@@ -11,23 +11,18 @@ const locations = [
   'Community Centre', 'Cinema Hall',
 ];
 
-const quickFilters = [
-  { label: 'Block C', icon: MapPin, slug: '/area/block-c' },
-  { label: 'Block D', icon: MapPin, slug: '/area/block-d' },
-  { label: 'DDA Flats', icon: Building2, slug: '/area/dda-flats' },
-  { label: 'Circle Rates', icon: TrendingUp, slug: '/circle-rates' },
-];
+const quickFilters: never[] = [];
 
 export function Hero() {
   return (
-    <section className="relative w-full overflow-hidden min-h-[500px] h-[calc(100svh-5rem)]">
-      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover object-center">
-        <source src="/bgvideo.mp4" type="video/mp4" />
+    <section className="relative w-full overflow-hidden min-h-[600px] sm:min-h-[620px] lg:min-h-[640px] lg:h-[calc(100svh-5rem)] flex items-center">
+      <video autoPlay loop muted playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover object-center">
+        <source src="https://res.cloudinary.com/s8hu1xkw/video/upload/v1788793274/final_1_jrtbih.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/80" />
       <div className="absolute inset-0 bg-primary-navy/30" />
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 py-8 text-center sm:px-6 sm:py-10 lg:px-8 lg:py-8">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 py-10 sm:py-10 lg:py-8 text-center sm:px-6 lg:px-8">
         <NameBlocks />
         <Headline />
         <Subtitle />
@@ -82,35 +77,68 @@ function NameBlocks() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const renderWord = (indices: number[]) => (
+    <div className="flex items-center justify-center gap-1 sm:gap-1.5">
+      {indices.map((i) => (
+        <div
+          key={i}
+          className={`w-9 h-[46px] sm:w-10 sm:h-12 md:w-12 md:h-16 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
+            revealed[i]
+              ? 'bg-white/10 border-gold-accent/40 shadow-lg shadow-gold-accent/10'
+              : 'bg-white/5 border-white/15'
+          }`}
+        >
+          <span className={`text-[18px] sm:text-2xl md:text-4xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
+            revealed[i] ? 'text-gold-accent' : 'text-white/70'
+          }`}>
+            {letters[i]}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
-    <div className="flex items-center justify-center gap-1 sm:gap-1.5 mb-3 sm:mb-4 lg:mb-5 flex-wrap">
-      {chars.map((c, i) =>
-        c === ' ' ? (
-          <div key={i} className="w-2 sm:w-3" />
-        ) : (
-          <div
-            key={i}
-            className={`w-7 h-10 sm:w-9 sm:h-12 md:w-12 md:h-16 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
-              revealed[i]
-                ? 'bg-white/10 border-gold-accent/40 shadow-lg shadow-gold-accent/10'
-                : 'bg-white/5 border-white/15'
-            }`}
-          >
-            <span className={`text-lg sm:text-2xl md:text-4xl font-bold tabular-nums transition-colors duration-300 ${
-              revealed[i] ? 'text-gold-accent' : 'text-white/60'
-            }`}>
-              {letters[i]}
-            </span>
-          </div>
-        )
-      )}
+    <div className="flex flex-col items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 lg:mb-5">
+      {/* Mobile: 2 lines — EAST OF / KAILASH */}
+      <div className="flex flex-col items-center gap-1.5 sm:hidden">
+        <div className="flex items-center justify-center gap-1">
+          {renderWord([0, 1, 2, 3])}
+          <div className="w-2" />
+          {renderWord([5, 6])}
+        </div>
+        {renderWord([8, 9, 10, 11, 12, 13, 14])}
+      </div>
+      {/* Desktop: single line */}
+      <div className="hidden sm:flex items-center justify-center gap-1 sm:gap-1.5 flex-wrap">
+        {chars.map((c, i) =>
+          c === ' ' ? (
+            <div key={i} className="w-2 sm:w-3" />
+          ) : (
+            <div
+              key={i}
+              className={`w-10 h-14 md:w-12 md:h-16 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
+                revealed[i]
+                  ? 'bg-white/10 border-gold-accent/40 shadow-lg shadow-gold-accent/10'
+                  : 'bg-white/5 border-white/15'
+              }`}
+            >
+              <span className={`text-[26px] md:text-4xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
+                revealed[i] ? 'text-gold-accent' : 'text-white/70'
+              }`}>
+                {letters[i]}
+              </span>
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 }
 
 function Headline() {
   return (
-    <h1 className="text-3xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-[1.1] tracking-tight">
+    <h1 className="text-[30px] xs:text-[32px] sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-[1.1] tracking-tight">
       PRESTIGE HAS AN ADDRESS,
       <br />
       <span className="text-gold-accent">IT&apos;S EAST OF KAILASH</span>
@@ -120,7 +148,7 @@ function Headline() {
 
 function Subtitle() {
   return (
-    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 max-w-[90%] sm:max-w-2xl mx-auto mb-5 sm:mb-7 lg:mb-8 leading-relaxed">
+    <p className="text-[14px] sm:text-base md:text-lg lg:text-xl text-white/70 max-w-[90%] sm:max-w-2xl mx-auto mb-5 sm:mb-6 lg:mb-8 leading-relaxed px-2 sm:px-0">
       Your Trusted South Delhi Real Estate Partner. Buy, sell, rent or invest across Blocks A&ndash;G, DDA Flats and the Community Centre belt of East of Kailash.
     </p>
   );
@@ -213,11 +241,11 @@ function SearchSection() {
   }, []);
 
   return (
-    <div className="w-full max-w-[92%] xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-3 lg:mb-4">
+    <div className="w-full max-w-[92%] xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-3.5 lg:mb-4">
       <div className="relative">
         <div className="bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.3)] p-1.5 sm:p-2 flex flex-col sm:flex-row items-stretch gap-1.5 sm:gap-2">
-          <div className="relative flex-grow flex items-center gap-2 sm:gap-3 bg-light-navy/60 px-3 sm:px-5 py-3 sm:py-4 rounded-xl min-w-0">
-            <Search className="w-4 h-4 sm:w-5 sm:h-5 text-secondary-text shrink-0 relative z-10" />
+          <div className="relative flex-grow flex items-center gap-2 sm:gap-3 bg-light-navy/60 px-3.5 sm:px-5 py-3.5 sm:py-4 rounded-xl min-w-0">
+            <Search className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-secondary-text shrink-0 relative z-10" />
             <input
               type="text"
               value={userInput}
@@ -225,14 +253,14 @@ function SearchSection() {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className="absolute inset-0 w-full h-full bg-transparent border-none outline-none text-primary-navy px-3 sm:px-5 pl-[40px] sm:pl-[52px] py-3 sm:py-4 text-sm sm:text-base z-20 caret-primary-navy"
+              className="absolute inset-0 w-full h-full bg-transparent border-none outline-none text-primary-navy px-3 sm:px-5 pl-[42px] sm:pl-[52px] py-3.5 sm:py-4 text-[15px] sm:text-base z-20 caret-primary-navy"
             />
             {!userInput && !isFocused && (
-              <span className="absolute left-[40px] sm:left-[52px] right-3 top-1/2 -translate-y-1/2 text-sm sm:text-base pointer-events-none z-10 whitespace-nowrap overflow-hidden text-ellipsis text-left">
+              <span className="absolute left-[42px] sm:left-[52px] right-3 top-1/2 -translate-y-1/2 text-[15px] sm:text-base pointer-events-none z-10 whitespace-nowrap overflow-hidden text-ellipsis text-left">
                 <span className="text-secondary-text/60">Search For </span>
                 <span className="text-primary-navy">{locationText}</span>
                 <span
-                  className={`inline-block w-[2px] h-4 sm:h-5 bg-primary-navy/70 ml-[1px] align-middle ${
+                  className={`inline-block w-[2px] h-[18px] sm:h-5 bg-primary-navy/70 ml-[1px] align-middle ${
                     cursorVisible ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
@@ -241,7 +269,7 @@ function SearchSection() {
           </div>
           <button
             onClick={handleSearch}
-            className="bg-primary-navy hover:bg-gold-accent text-white px-5 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg w-full sm:w-auto"
+            className="bg-primary-navy hover:bg-gold-accent text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-[15px] sm:text-base transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg w-full sm:w-auto"
           >
             Search
           </button>
@@ -270,25 +298,20 @@ function SearchSection() {
 
 function Chips() {
   const router = useRouter();
-
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-5 sm:mb-6 lg:mb-7 max-w-full px-1">
-      {quickFilters.map((filter) => (
-        <button
-          key={filter.label}
-          onClick={() => router.push(filter.slug)}
-          className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-[11px] sm:text-sm font-medium transition-all duration-200"
-        >
-          <filter.icon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          {filter.label}
-        </button>
-      ))}
-      <span className="text-white/20 hidden sm:inline">|</span>
+    <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-5 sm:mb-6 lg:mb-7 max-w-full px-1">
+      <button
+        onClick={() => router.push('/circle-rates')}
+        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-xs sm:text-sm font-medium transition-all duration-200"
+      >
+        <TrendingUp className="w-3.5 h-3.5" />
+        Circle Rates
+      </button>
       <button
         onClick={() => router.push('/list-your-property')}
-        className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gold-accent/90 hover:bg-gold-accent border border-gold-accent text-primary-navy text-[11px] sm:text-sm font-semibold transition-all duration-200"
+        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gold-accent hover:bg-gold-accent/90 border border-gold-accent text-primary-navy text-xs sm:text-sm font-semibold transition-all duration-200"
       >
-        <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+        <Plus className="w-3.5 h-3.5" />
         List Your Property
       </button>
     </div>
@@ -307,10 +330,10 @@ function Stats() {
     <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-5 sm:gap-6 md:gap-10 pt-5 sm:pt-6 mt-1 border-t border-white/20 w-full max-w-[92%] xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl">
       {stats.map((stat) => (
         <div key={stat.label} className="text-center">
-          <div className="text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-gold-accent drop-shadow-lg">
+          <div className="text-[26px] xs:text-[28px] sm:text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-gold-accent drop-shadow-lg">
             {stat.value}
           </div>
-          <div className="text-[9px] sm:text-xs md:text-sm text-white/50 mt-1 uppercase tracking-wider font-medium">
+          <div className="text-[10px] sm:text-xs md:text-sm text-white/50 mt-1 uppercase tracking-wider font-medium">
             {stat.label}
           </div>
         </div>
