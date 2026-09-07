@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, MapPin, Building2, TrendingUp } from 'lucide-react';
+import { Search, MapPin, Building2, TrendingUp, Plus } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
 
 const locations = [
@@ -12,10 +12,10 @@ const locations = [
 ];
 
 const quickFilters = [
+  { label: 'Block C', icon: MapPin, slug: '/area/block-c' },
+  { label: 'Block D', icon: MapPin, slug: '/area/block-d' },
   { label: 'DDA Flats', icon: Building2, slug: '/area/dda-flats' },
-  { label: 'Block A', icon: MapPin, slug: '/area/block-a' },
-  { label: 'Community Centre', icon: TrendingUp, slug: '/area/community-centre-1' },
-  { label: 'Commercial', icon: TrendingUp, slug: null },
+  { label: 'Circle Rates', icon: TrendingUp, slug: '/circle-rates' },
 ];
 
 export function Hero() {
@@ -271,20 +271,12 @@ function SearchSection() {
 function Chips() {
   const router = useRouter();
 
-  const handleClick = (filter: (typeof quickFilters)[number]) => {
-    if (filter.slug) {
-      router.push(filter.slug);
-    } else {
-      document.getElementById('featured-properties')?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-5 sm:mb-6 lg:mb-7 max-w-full px-1">
       {quickFilters.map((filter) => (
         <button
           key={filter.label}
-          onClick={() => handleClick(filter)}
+          onClick={() => router.push(filter.slug)}
           className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-[11px] sm:text-sm font-medium transition-all duration-200"
         >
           <filter.icon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -293,9 +285,10 @@ function Chips() {
       ))}
       <span className="text-white/20 hidden sm:inline">|</span>
       <button
-        onClick={() => document.getElementById('featured-properties')?.scrollIntoView({ behavior: 'smooth' })}
-        className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-[11px] sm:text-sm font-medium transition-all duration-200"
+        onClick={() => router.push('/list-your-property')}
+        className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gold-accent/90 hover:bg-gold-accent border border-gold-accent text-primary-navy text-[11px] sm:text-sm font-semibold transition-all duration-200"
       >
+        <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
         List Your Property
       </button>
     </div>

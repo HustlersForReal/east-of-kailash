@@ -157,7 +157,7 @@ export const areaProfiles = [
     name: "Block A",
     tagline: "Where East Of Kailash Begins",
     category: "residential",
-    description: "Block A is the gateway of East of Kailash, sitting closest to the Outer Ring Road side of the colony. It enjoys some of the widest lanes in the area, well-laid-out parks and quick access to the neighbouring commercial belt. The block carries the classic East of Kailash character \u2014 planned plots, green pockets at regular intervals and an established, settled community. Its location makes daily commuting towards Nehru Place, Kailash Colony and Lajpat Nagar remarkably easy.",
+    description: "Block A is a well-established residential pocket of East of Kailash along Captain Gaur Marg, with a mix of independent houses, builder floors, DDA flats and CGHS apartments. It is a relatively quiet and green part of South Delhi, surrounded by Block B, Amritpuri, Sri Niwaspuri, Kailash Hills and Kailash Colony, while major areas such as Greater Kailash, Lajpat Nagar and Nehru Place are also easily accessible. The block is particularly well placed for everyday convenience, with nearby markets, cafés, schools, hospitals, banks and other local services, while the Lajpat Nagar and Greater Kailash M Block markets serve as major shopping and commercial destinations. The area is also close to some of East of Kailash's best-known landmarks, including the ISKCON Temple and Lotus Temple, with Nehru Place Market and Nehru Place Metro Station providing access to the wider commercial and transport network. Bluebells School International, Chandra Arya Vidya Mandir and other schools are located in the surrounding locality, while Kailash Colony adds further educational and healthcare options. Overall, Block A combines an established residential environment with strong road connectivity, nearby markets and several prominent South Delhi landmarks, making it a practical location for both homeowners and property seekers.",
     suggestedInvestment: "Expect strong demand for builder floors and independent houses here. Recommended for both end-use buyers and investors seeking steady rental income from working professionals in the nearby commercial hubs."
   },
   {
@@ -165,7 +165,7 @@ export const areaProfiles = [
     name: "Block B",
     tagline: "Central, Calm & Convenient",
     category: "residential",
-    description: "Block B sits at the quiet centre of the colony, balancing residential calm with everyday convenience. The block is known for its maintained parks, community feel and a healthy mix of original allottees, upgraded builder floors and young families moving in. Markets, schools and healthcare options of East of Kailash are all within a short walk or drive.",
+    description: "Block B is an established residential pocket of East of Kailash, offering a mix of builder floors, independent houses, DDA/SFS flats and apartments in a mature neighbourhood with parks, local shops and everyday conveniences. The block is surrounded by Blocks A and C, Kailash Hills, Garhi and Sant Nagar, while Nehru Place, Kailash Colony, Lajpat Nagar and Greater Kailash are easily accessible. Popular destinations such as Central Market, Lajpat Nagar, Nehru Place Market and Greater Kailash's M Block Market are nearby, offering shopping, restaurants, cafés and everyday services. The area also has access to schools and community facilities including MCD Pratibha School, Guru Nanak Darbar Satsang Sabha School and Valley of Kids Play School, with Bluebells School International and Summer Fields School in the surrounding locality. Kailash Colony and Nehru Place Metro Stations provide convenient metro connectivity, while Captain Gaur Marg and nearby major roads connect the block to other parts of South Delhi. With its established housing, green surroundings, proximity to well-known markets and strong connectivity, Block B is a well-regarded residential area for both homeowners and tenants.",
     suggestedInvestment: "Recommended for families planning self-use as well as investors looking at reliable resale value. Builder floors here hold demand consistently through market cycles."
   },
   {
@@ -173,7 +173,7 @@ export const areaProfiles = [
     name: "Block C",
     tagline: "The Established Heart Of The Colony",
     category: "residential",
-    description: "One of the most sought-after addresses within East of Kailash, Block C combines premium residential stock with excellent positioning inside the colony. Wide roads, generous plot sizes and proximity to the Community Centre belt give it a distinctly upmarket profile. Professionals, business owners and established families have long favoured this pocket.",
+    description: "Block C is a well-established residential pocket of East of Kailash, with a mix of independent houses, builder floors and apartment developments, and a notably green character supported by several neighbourhood parks. Dwello lists five parks within and around C Block, including C Block Parks 1, 2 and 3, Chakki Wala Park and Water Pump Park. The block also has strong access to educational facilities, with South Delhi Public School located within C Block, while Bluebells School International, Cambridge School, Guru Harkrishan Public School, Tagore International School and The Ardee School are among the schools listed nearby. Its location puts residents close to Kailash Hills, Block B, Block F, Garhi and Kailash Colony, while Nehru Place and Greater Kailash are also easily accessible for shopping, dining and commercial needs. The ISKCON Temple and Khatu Shyam Temple lie towards the southern side of the block, while local shops, clinics and small commercial activity are available along Raja Dhirsain Marg and Gurjar Samrat Mihir Bhoj Marg. With its parks, schools, established housing and access to major South Delhi destinations, Block C offers a particularly convenient residential environment within East of Kailash.",
     suggestedInvestment: "Recommended for premium residential investment \u2014 luxury builder floors and independent houses here command top rental yields and long-term appreciation."
   },
   {
@@ -181,7 +181,7 @@ export const areaProfiles = [
     name: "Block D",
     tagline: "Park-Side Living, Family Favourite",
     category: "residential",
-    description: "Block D is defined by its green surroundings \u2014 several of the colony's best-maintained parks fall in and around this block, making it a favourite among families with children and seniors alike. Morning walks, evening gatherings and an active resident community give the block its warm, lived-in character while staying minutes away from the main markets.",
+    description: "Block D is a well-established residential pocket of East of Kailash, known for its builder floors, independent homes and park-facing properties, along with a convenient mix of residential and everyday commercial activity. The block has local shops, banks, clinics, professional offices and essential services along its main roads, while notable nearby conveniences include Miraaj Cinema, McDonald's, National Heart Institute, the local post office and petrol pump. Kailash Colony Metro Station provides easy metro connectivity, and Nehru Place, Kailash Colony, Lajpat Nagar and Greater Kailash are accessible for shopping, dining and commercial needs. The area also benefits from proximity to schools, restaurants and Lady Shri Ram College, with parks and green spaces adding to its established residential character. With its blend of established housing, everyday amenities, healthcare, entertainment and strong connectivity to the wider South Delhi area, Block D is a practical and well-connected locality for both homeowners and property seekers.",
     suggestedInvestment: "Recommended for end-use family homes. Park-facing floors here enjoy a visible price premium and rarely stay unsold for long."
   },
   {
@@ -189,7 +189,7 @@ export const areaProfiles = [
     name: "Block E",
     tagline: "Space, Privacy & Strong Value",
     category: "residential",
-    description: "Block E offers some of the more spacious plots and independent houses in East of Kailash. It retains a slightly quieter, low-traffic atmosphere compared to the blocks closer to the ring road, which makes it attractive for buyers prioritising privacy without losing connectivity to schools, hospitals and the commercial centres.",
+    description: "Block E is a well-established residential pocket of East of Kailash that combines quiet residential lanes with active shopping streets, offering a mix of independent homes, builder floors and apartments. A defining landmark of the block is the ISKCON Temple, which sits at the heart of the locality and is one of the area's most recognisable destinations. The block also has several parks and convenient access to schools, hospitals, banks, markets and everyday services, while Kailash Colony, Greater Kailash, Lajpat Nagar and Nehru Place are nearby for wider shopping, dining and commercial needs. Kailash Colony Metro Station and Nehru Place Metro Station provide convenient public transport connectivity, and the surrounding road network offers easy access to other parts of South Delhi. The locality's established housing stock, green spaces, strong everyday infrastructure and proximity to the ISKCON Temple and major South Delhi neighbourhoods make Block E a well-connected residential area for both homeowners and property seekers.",
     suggestedInvestment: "Recommended for buyers targeting larger formats \u2014 villas and multi-storey independent houses. Redevelopment potential here is a strong long-term value driver."
   },
   {
@@ -197,7 +197,7 @@ export const areaProfiles = [
     name: "Block F",
     tagline: "Well-Planned & Perfectly Connected",
     category: "residential",
-    description: "A well-planned residential block with orderly streets, functional parks and easy access to both the Inner and Outer Ring Road corridors. Block F benefits from being equidistant between the colony's amenity belt \u2014 schools, hospitals and nursing homes \u2014 and its shopping areas, making it one of the most practical addresses in East of Kailash.",
+    description: "Block F is a well-established residential pocket of East of Kailash, with a mix of independent homes, builder floors and low-rise residential properties in a relatively calm, established neighbourhood. It is particularly convenient for everyday needs, with banks, financial services, hotels, restaurants and local retail available nearby, while McDonald's and Spring Meadows Hospital are notable establishments in the locality. The block is situated close to Iskcon Chowk, Garhi Neem Chowk and Kailash Colony, with Kailash Colony Metro Station providing convenient access to the Delhi Metro network and Nehru Place serving as a major nearby commercial hub. The area also benefits from parks, schools, healthcare facilities and other essential services, while its proximity to neighbouring blocks such as E, D and C keeps it well integrated with the wider East of Kailash neighbourhood. With limited large-scale new development and a predominantly low-rise residential character, Block F offers an established South Delhi setting with good connectivity and strong access to everyday amenities.",
     suggestedInvestment: "Recommended for mid-to-premium builder floors with dependable tenant demand from professionals working in Nehru Place and Okhla."
   },
   {
@@ -205,7 +205,7 @@ export const areaProfiles = [
     name: "Block G",
     tagline: "The Quiet Corner Of 110065",
     category: "residential",
-    description: "Block G forms a peaceful edge of East of Kailash, known for its calm streets and settled residential character. Away from the busiest arteries yet fully serviced by the colony's infrastructure, it offers comfortable living at comparatively accessible entry prices \u2014 often the smartest first step into this micro-market.",
+    description: "Block G is a relatively quiet residential pocket of Kailash Hills, East of Kailash, characterised by independent houses, builder floors and low-rise residential properties. The area has a more residential and less commercial character, while still being well connected to the wider East of Kailash neighbourhood. DAV Public School is located very close to the locality, and nearby amenities include grocery stores, local shops, parks and everyday services. The block also has convenient access to Kailash Colony, Nehru Place and Sant Nagar, while major roads including Mathura Road and Nehru Place Road help connect it with other parts of South Delhi. The locality's established housing stock, relatively peaceful surroundings and proximity to schools, healthcare, markets and major commercial hubs make G Block a practical choice for families and property buyers looking for a quieter residential setting within East of Kailash. Official Delhi records also specifically identify G Block, East of Kailash within the Kailash Hills area, confirming its location within the neighbourhood.",
     suggestedInvestment: "Recommended for first-time buyers and yield-focused investors. Entry pricing here is friendlier while appreciation tracks the rest of the colony."
   },
   {
@@ -213,7 +213,7 @@ export const areaProfiles = [
     name: "DDA Flats",
     tagline: "The Original Backbone Of East Of Kailash",
     category: "residential",
-    description: "The DDA flats of East of Kailash are the colony's original housing backbone \u2014 compact, functional units built during Delhi's planned expansion era. Over the decades these pockets have evolved into a lively mix of owner-occupied homes, renovated units and student/young-professional rentals. Their biggest strengths remain unbeatable value per square foot inside a premium South Delhi pincode and consistently deep rental demand.",
+    description: "DDA SFS Flats in East of Kailash are an established residential development by the Delhi Development Authority, offering low-rise apartment living in a planned community setting. The SFS development on Captain Gaur Marg in C Block, Kailash Hills comprises around 140 residential units across seven towers and approximately three acres, with amenities including parks, jogging and cycling tracks, reserved parking, security, flower gardens, rainwater harvesting and water storage. The location is well placed for everyday convenience, with Amritpuri Main Market and Ramesh Market nearby, while Bluebells International School and MCD School are accessible from the development. The wider East of Kailash area provides easy access to Nehru Place, Greater Kailash, Kailash Colony and Lajpat Nagar, with metro connectivity available through nearby stations. DDA SFS flats also form an important part of the resale housing market in East of Kailash, offering an alternative to the area's more common builder-floor and independent-house properties.",
     suggestedInvestment: "Recommended for rental-yield investors \u2014 PG operators, student accommodation and young professional tenants keep occupancy high. Also a practical entry ticket into the East of Kailash market."
   },
   {
@@ -221,7 +221,7 @@ export const areaProfiles = [
     name: "Schools",
     tagline: "Education At Walking Distance",
     category: "amenities",
-    description: "East of Kailash is served by reputed public and senior-secondary schools in and around the colony, with the wider South Delhi education belt \u2014 including institutions near Kailash Colony, Alaknanda and Greater Kailash \u2014 only a short ride away. For families, this means school runs measured in minutes rather than hours; for investors, properties near good schools enjoy persistent demand and premium rents from education-focused households.",
+    description: "East of Kailash has a strong selection of schools within the locality and nearby South Delhi neighbourhoods, making it a convenient residential area for families with school-going children. Some of the prominent schools in and around East of Kailash include Tagore International School, DAV Public School in Kailash Hills, Daisy Dales Senior Secondary School and Adarsh Vidya Mandir Public School, with South Delhi Public School and Chandra Arya Vidya Mandir also located in the area. The wider neighbourhood further expands the options with well-known institutions such as Bluebells School International, Cambridge School, Summer Fields School and Kalka Public School, located in nearby Kailash Colony, Sriniwaspuri and Alaknanda. Most of the established schools in and around East of Kailash follow the CBSE curriculum, with options ranging from pre-primary through senior secondary education. The area's location between Kailash Colony, Greater Kailash, Nehru Place and Lajpat Nagar also gives residents access to a broader range of educational institutions without having to travel far from home.",
     suggestedInvestment: "Residential property anywhere within the school catchment holds value exceptionally well. Recommended for family-home buyers and landlords targeting long-term family tenancies."
   },
   {
@@ -229,7 +229,7 @@ export const areaProfiles = [
     name: "Hospitals",
     tagline: "Serious Healthcare Around The Corner",
     category: "amenities",
-    description: "Quality healthcare is one of East of Kailash's strongest cards. The colony hosts established nursing homes and clinics of its own, while major hospitals and specialty institutes of South Delhi sit within quick reach along the Ring Road corridor \u2014 including the well-known heart institute in the neighbourhood. Daily conveniences like diagnostic labs, pharmacies and dental clinics are embedded across the blocks.",
+    description: "East of Kailash has access to a wide range of hospitals, speciality centres and healthcare facilities within the locality and surrounding South Delhi areas. One of the most prominent healthcare institutions in the neighbourhood is National Heart Institute, located at the East of Kailash Community Centre and known for its cardiac and multispeciality services. Other nearby options include Spring Meadows Hospital and Eden Hospital within East of Kailash, while Apollo Spectra Hospitals in Kailash Colony, Cloudnine Hospital in Kailash Colony and SCI International Hospital in Greater Kailash-I provide additional multispeciality and speciality care. RG Stone Urology & Laparoscopy Hospital on F-12, East of Kailash is another notable speciality facility, particularly focused on urology and laparoscopic procedures. The locality's proximity to Moolchand Hospital in Lajpat Nagar, Fortis Escorts Heart Institute in Okhla and other major South Delhi healthcare centres further expands the range of medical services available to residents.",
     suggestedInvestment: "Proximity to healthcare drives demand from families with seniors \u2014 a fast-growing renter segment. Recommended for buyers planning long-horizon, low-vacancy residential assets."
   },
   {
@@ -237,7 +237,7 @@ export const areaProfiles = [
     name: "Nursing Home",
     tagline: "Neighbourhood Care, Round The Clock",
     category: "amenities",
-    description: "East of Kailash's own nursing home facilities give residents dependable neighbourhood healthcare \u2014 from routine consultations and day-care procedures to post-hospitalisation recovery close to home. Having such facilities inside the colony reduces dependence on far-off hospitals for everyday medical needs and adds a layer of security that families deeply value when choosing where to live.",
+    description: "East of Kailash has access to a range of nursing homes, maternity facilities, medical centres and patient-care services within the locality and nearby South Delhi neighbourhoods. The area is supported by healthcare establishments such as Eden Hospital, while National Heart Institute in East of Kailash is another established healthcare facility in the locality. Nearby areas including Kailash Colony, Greater Kailash and Lajpat Nagar further expand the availability of nursing and specialised medical care. Justdial's listings also include facilities and nursing services serving residents of East of Kailash, with options covering 24-hour care, patient assistance and home nursing services.",
     suggestedInvestment: "Healthcare-adjacent localities see stable, long-duration tenancies. Recommended for residential buyers who want a complete live-work-stay-heal ecosystem within one pincode."
   },
   {
@@ -245,7 +245,7 @@ export const areaProfiles = [
     name: "Community Centre 1",
     tagline: "The Primary Commercial Hub",
     category: "commercial",
-    description: "Community Centre 1 is the original and primary commercial hub of East of Kailash — a bustling cluster of banks, restaurants, retail showrooms, clinics and daily-need stores that has served the colony for decades. Steady footfall from across Blocks A–G and surrounding colonies makes this a high-visibility, high-demand commercial zone with genuine scarcity value.",
+    description: "The DDA Community Centre in East of Kailash serves as an important neighbourhood facility for residents, providing a convenient venue for community gatherings, social functions, local events and other residential activities. Located within the established East of Kailash area, the community centre is surrounded by residential blocks and is easily accessible from the neighbourhood's internal roads and nearby localities. Its location makes it a useful shared space for residents and local associations, complementing the area's existing parks, markets and other community infrastructure.",
     suggestedInvestment: "Recommended to invest in commercial showrooms, shops and office spaces for very high and consistent rental yields. Ground-floor retail facing the main CC circulation is gold-standard stock."
   },
   {
@@ -253,7 +253,7 @@ export const areaProfiles = [
     name: "Community Centre 2",
     tagline: "The Second Wave Of Commerce",
     category: "commercial",
-    description: "Community Centre 2 extends the commercial vitality of the colony's main belt. Its growing mix of eateries, co-working spaces and retail outlets complements CC 1, giving East of Kailash the rare advantage of two dedicated commercial centres within one residential colony. For investors, this means a wider canvas for tenants across food, services and retail.",
+    description: "The DDA Community Centre in East of Kailash serves as an important neighbourhood facility for residents, providing a convenient venue for community gatherings, social functions, local events and other residential activities. Located within the established East of Kailash area, the community centre is surrounded by residential blocks and is easily accessible from the neighbourhood's internal roads and nearby localities. Its location makes it a useful shared space for residents and local associations, complementing the area's existing parks, markets and other community infrastructure.",
     suggestedInvestment: "Recommended for investors targeting rising commercial rental yields — CC 2 offers slightly more accessible entry prices while tracking the same upward trajectory as CC 1."
   },
   {
@@ -261,7 +261,7 @@ export const areaProfiles = [
     name: "Cinema Hall",
     tagline: "Entertainment Built Into The Colony",
     category: "commercial",
-    description: "East of Kailash carries a rare advantage among South Delhi colonies \u2014 its own cinema hall within the commercial zone. It anchors the evening economy of the area, pulling crowds that spill into nearby eateries, cafes and shops of the Community Centre belt. Entertainment-led footfall keeps the surrounding commercial strip active seven days a week, directly supporting the value of every shop and office around it.",
+    description: "East of Kailash has several cinema options within the locality and its immediate surroundings, making movie-going a convenient entertainment option for residents. The most notable theatre is M Cinemas, located at 54, Community Centre, near ISKCON Temple on Sapna Cinema Road. The single-screen multiplex is known for its recliner seating, Dolby Atmos sound and premium large-screen experience. The area is also close to the established cinema hubs of Nehru Place and Lajpat Nagar, where residents can access multiple INOX and PVR screens, including INOX at Nehru Place and PVR at 3Cs Mall. Historically, Sapna Cinema was a recognised cinema landmark of East of Kailash and the site was later associated with M Cinemas, giving the area a long-standing connection with local cinema culture.",
     suggestedInvestment: "Recommended to invest commercially in food & beverage and retail spaces feeding off cinema traffic \u2014 consistent weekend surges make these among the highest-grossing small-format assets in the colony."
   }
 ];
