@@ -6,3 +6,4 @@ coverage/
 .env*
 !.env.example
 public/bgvideo.mp4
+public/bgvideo.mp4
