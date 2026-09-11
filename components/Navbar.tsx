@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info } from 'lucide-react';
+import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info, Camera } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
 import { site } from '@/lib/site';
 
@@ -49,6 +49,7 @@ export function Navbar() {
                   </div>
                 )}
               </div>
+              <Link href="/gallery" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Gallery</Link>
               <Link href="/list-your-property" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">List Your Property</Link>
               <Link href="/circle-rates" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Circle Rates</Link>
               <Link href="/exclusive-deals" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Exclusive Deals</Link>
@@ -77,10 +78,11 @@ export function Navbar() {
             {mobileExplore && (
               <div className="ml-4 pl-3 border-l border-border-color space-y-0.5 max-h-[260px] overflow-y-auto py-1">
                 {areaProfiles.map((area) => (
-                  <Link key={area.slug} href={`/area/${area.slug}`} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md transition-colors">{area.name}</Link>
+                  <Link key={area.slug} href={`/area/${area.slug}`} onClick={() => setMobileOpen(false)} className="flex items-center gap-2 px-3 py-2 text-sm text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md transition-colors"><MapPin className="w-3.5 h-3.5 text-gold-accent shrink-0" />{area.name}</Link>
                 ))}
               </div>
             )}
+            <Link href="/gallery" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Camera className="w-4 h-4 text-gold-accent" /> Gallery</Link>
             <Link href="/list-your-property" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-gold-accent bg-gold-accent/10 hover:bg-gold-accent/20 rounded-xl transition-colors"><Plus className="w-4 h-4" /> List Your Property</Link>
             <Link href="/circle-rates" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><BarChart3 className="w-4 h-4 text-gold-accent" /> Circle Rates</Link>
             <Link href="/exclusive-deals" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Star className="w-4 h-4 text-gold-accent" /> Exclusive Deals</Link>

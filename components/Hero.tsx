@@ -15,14 +15,14 @@ const quickFilters: never[] = [];
 
 export function Hero() {
   return (
-    <section className="relative w-full overflow-hidden min-h-[600px] sm:min-h-[620px] lg:min-h-[640px] lg:h-[calc(100svh-5rem)] flex items-center">
+    <section className="relative w-full overflow-hidden min-h-[500px] sm:min-h-[520px] lg:min-h-[720px] xl:min-h-[760px] flex items-center py-4 sm:py-6 lg:py-12">
       <video autoPlay loop muted playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover object-center">
-        <source src="https://res.cloudinary.com/s8hu1xkw/video/upload/v1788793274/final_1_jrtbih.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/s8hu1xkw/video/upload/v1789155623/EOK-FInal-compressed_yz0ahn.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/80" />
       <div className="absolute inset-0 bg-primary-navy/30" />
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 py-10 sm:py-10 lg:py-8 text-center sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 py-4 sm:py-6 lg:py-6 text-center sm:px-6 lg:px-8">
         <NameBlocks />
         <Headline />
         <Subtitle />
@@ -77,18 +77,18 @@ function NameBlocks() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderWord = (indices: number[]) => (
+  const renderWord = (indices: number[], large = false) => (
     <div className="flex items-center justify-center gap-1 sm:gap-1.5">
       {indices.map((i) => (
         <div
           key={i}
-          className={`w-9 h-[46px] sm:w-10 sm:h-12 md:w-12 md:h-16 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
+          className={`${large ? 'w-[40px] h-[52px] sm:w-10 sm:h-12' : 'w-[36px] h-[46px] sm:w-10 sm:h-12'} md:w-12 md:h-16 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
             revealed[i]
               ? 'bg-white/10 border-gold-accent/40 shadow-lg shadow-gold-accent/10'
               : 'bg-white/5 border-white/15'
           }`}
         >
-          <span className={`text-[18px] sm:text-2xl md:text-4xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
+          <span className={`${large ? 'text-[20px]' : 'text-[18px]'} sm:text-2xl md:text-4xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
             revealed[i] ? 'text-gold-accent' : 'text-white/70'
           }`}>
             {letters[i]}
@@ -99,13 +99,13 @@ function NameBlocks() {
   );
 
   return (
-    <div className="flex flex-col items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 lg:mb-5">
-      {/* Mobile: 2 lines — EAST OF / KAILASH */}
-      <div className="flex flex-col items-center gap-1.5 sm:hidden">
+    <div className="flex flex-col items-center gap-1 sm:gap-1.5 mb-2 sm:mb-3">
+      {/* Mobile: 2 lines — EAST OF (bada) / KAILASH */}
+      <div className="flex flex-col items-center gap-1 sm:hidden">
         <div className="flex items-center justify-center gap-1">
-          {renderWord([0, 1, 2, 3])}
+          {renderWord([0, 1, 2, 3], true)}
           <div className="w-2" />
-          {renderWord([5, 6])}
+          {renderWord([5, 6], true)}
         </div>
         {renderWord([8, 9, 10, 11, 12, 13, 14])}
       </div>
@@ -138,7 +138,7 @@ function NameBlocks() {
 
 function Headline() {
   return (
-    <h1 className="text-[30px] xs:text-[32px] sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-5 leading-[1.1] tracking-tight">
+    <h1 className="text-[30px] xs:text-[32px] sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-white mb-2 sm:mb-3 leading-[1.1] tracking-tight">
       PRESTIGE HAS AN ADDRESS,
       <br />
       <span className="text-gold-accent">IT&apos;S EAST OF KAILASH</span>
@@ -148,7 +148,7 @@ function Headline() {
 
 function Subtitle() {
   return (
-    <p className="text-[14px] sm:text-base md:text-lg lg:text-xl text-white/70 max-w-[90%] sm:max-w-2xl mx-auto mb-5 sm:mb-6 lg:mb-8 leading-relaxed px-2 sm:px-0">
+    <p className="text-[14px] sm:text-base md:text-lg lg:text-xl text-white/70 max-w-[90%] sm:max-w-2xl mx-auto mb-3.5 sm:mb-5 leading-relaxed px-2 sm:px-0">
       Your Trusted South Delhi Real Estate Partner. Buy, sell, rent or invest across Blocks A&ndash;G, DDA Flats and the Community Centre belt of East of Kailash.
     </p>
   );
@@ -161,6 +161,9 @@ function SearchSection() {
   const [isFocused, setIsFocused] = useState(false);
   const [userInput, setUserInput] = useState('');
   const lastIndex = useRef(-1);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isFocusedRef = useRef(false);
+  const cycleRef = useRef(0);
 
   const suggestions = userInput.trim()
     ? areaProfiles.filter((a) =>
@@ -185,42 +188,62 @@ function SearchSection() {
     }
   };
 
-  const getRandomLocation = () => {
-    let index;
-    do {
-      index = Math.floor(Math.random() * locations.length);
-    } while (index === lastIndex.current);
-    lastIndex.current = index;
-    return locations[index];
-  };
-
+  // Placeholder typewriter: runs ONLY while blurred. Focus kills the loop
+  // instantly and clears text; blur restarts a fresh loop. This fixes the
+  // glitch where typing continued behind input or never resumed after blur.
   useEffect(() => {
-    if (isFocused) return;
-    let timeout: ReturnType<typeof setTimeout>;
-    let cancelled = false;
+    isFocusedRef.current = isFocused;
+    if (isFocused) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+      setLocationText('');
+      return;
+    }
 
-    const run = () => {
-      const location = getRandomLocation();
+    let cancelled = false;
+    const myCycle = ++cycleRef.current;
+
+    const schedule = (fn: () => void, ms: number) => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        if (!cancelled && myCycle === cycleRef.current) fn();
+      }, ms);
+    };
+
+    const pickLocation = () => {
+      let index = Math.floor(Math.random() * locations.length);
+      if (locations.length > 1) {
+        while (index === lastIndex.current) {
+          index = Math.floor(Math.random() * locations.length);
+        }
+      }
+      lastIndex.current = index;
+      return locations[index];
+    };
+
+    const runCycle = () => {
+      if (cancelled || myCycle !== cycleRef.current || isFocusedRef.current) return;
+      const location = pickLocation();
       let i = 0;
       let deleting = false;
 
       const type = () => {
-        if (cancelled) return;
+        if (cancelled || myCycle !== cycleRef.current || isFocusedRef.current) return;
         if (!deleting) {
           setLocationText(location.slice(0, i + 1));
           i++;
           if (i <= location.length) {
-            timeout = setTimeout(type, 40 + Math.random() * 30);
+            schedule(type, 40 + Math.random() * 30);
           } else {
-            timeout = setTimeout(() => { deleting = true; type(); }, 2000);
+            schedule(() => { deleting = true; type(); }, 2000);
           }
         } else {
           setLocationText(location.slice(0, i));
           i--;
           if (i >= 0) {
-            timeout = setTimeout(type, 20);
+            schedule(type, 20);
           } else {
-            timeout = setTimeout(run, 300);
+            schedule(runCycle, 400);
           }
         }
       };
@@ -228,10 +251,13 @@ function SearchSection() {
       type();
     };
 
-    run();
+    // Small delay so blur→placeholder doesn't flash mid-transition.
+    schedule(runCycle, 250);
+
     return () => {
       cancelled = true;
-      clearTimeout(timeout);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     };
   }, [isFocused]);
 
@@ -241,11 +267,11 @@ function SearchSection() {
   }, []);
 
   return (
-    <div className="w-full max-w-[92%] xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-3.5 lg:mb-4">
+    <div className="w-full max-w-[92%] xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-2.5 sm:mb-3">
       <div className="relative">
-        <div className="bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.3)] p-1.5 sm:p-2 flex flex-col sm:flex-row items-stretch gap-1.5 sm:gap-2">
-          <div className="relative flex-grow flex items-center gap-2 sm:gap-3 bg-light-navy/60 px-3.5 sm:px-5 py-3.5 sm:py-4 rounded-xl min-w-0">
-            <Search className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-secondary-text shrink-0 relative z-10" />
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.35)] p-1.5 sm:p-2 flex flex-col sm:flex-row items-stretch gap-1.5 sm:gap-2">
+          <div className="relative flex-grow flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-3.5 sm:px-5 py-3.5 sm:py-4 rounded-xl min-w-0 border border-white/10">
+            <Search className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-white/70 shrink-0 relative z-10" />
             <input
               type="text"
               value={userInput}
@@ -253,14 +279,14 @@ function SearchSection() {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className="absolute inset-0 w-full h-full bg-transparent border-none outline-none text-primary-navy px-3 sm:px-5 pl-[42px] sm:pl-[52px] py-3.5 sm:py-4 text-[15px] sm:text-base z-20 caret-primary-navy"
+              className="absolute inset-0 w-full h-full bg-transparent border-none outline-none text-white px-3 sm:px-5 pl-[42px] sm:pl-[52px] py-3.5 sm:py-4 text-[15px] sm:text-base z-20 caret-white placeholder:text-white/40"
             />
             {!userInput && !isFocused && (
               <span className="absolute left-[42px] sm:left-[52px] right-3 top-1/2 -translate-y-1/2 text-[15px] sm:text-base pointer-events-none z-10 whitespace-nowrap overflow-hidden text-ellipsis text-left">
-                <span className="text-secondary-text/60">Search For </span>
-                <span className="text-primary-navy">{locationText}</span>
+                <span className="text-white/50">Search For </span>
+                <span className="text-white">{locationText}</span>
                 <span
-                  className={`inline-block w-[2px] h-[18px] sm:h-5 bg-primary-navy/70 ml-[1px] align-middle ${
+                  className={`inline-block w-[2px] h-[18px] sm:h-5 bg-white/70 ml-[1px] align-middle ${
                     cursorVisible ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
@@ -269,7 +295,7 @@ function SearchSection() {
           </div>
           <button
             onClick={handleSearch}
-            className="bg-primary-navy hover:bg-gold-accent text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-[15px] sm:text-base transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg w-full sm:w-auto"
+            className="bg-gold-accent hover:bg-white text-primary-navy px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-[15px] sm:text-base transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg w-full sm:w-auto"
           >
             Search
           </button>
@@ -299,7 +325,7 @@ function SearchSection() {
 function Chips() {
   const router = useRouter();
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-5 sm:mb-6 lg:mb-7 max-w-full px-1">
+    <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-3.5 sm:mb-5 max-w-full px-1">
       <button
         onClick={() => router.push('/circle-rates')}
         className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-xs sm:text-sm font-medium transition-all duration-200"
