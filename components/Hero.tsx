@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, MapPin, Building2, TrendingUp, Plus } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
+import { ServicesMarquee } from './ServicesMarquee';
 
 const locations = [
   'Block A', 'Block B', 'Block C', 'Block D', 'Block E', 'Block F', 'Block G',
@@ -15,20 +16,23 @@ const quickFilters: never[] = [];
 
 export function Hero() {
   return (
-    <section className="relative w-full overflow-hidden min-h-[500px] sm:min-h-[520px] lg:min-h-[720px] xl:min-h-[760px] flex items-center py-4 sm:py-6 lg:py-12">
+    <section className="relative w-full overflow-hidden min-h-[calc(100svh-4rem)] sm:min-h-[calc(100svh-5rem)] flex flex-col justify-between items-center pt-4 sm:pt-6 lg:pt-8 pb-0">
       <video autoPlay loop muted playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover object-center">
         <source src="https://res.cloudinary.com/s8hu1xkw/video/upload/v1789155623/EOK-FInal-compressed_yz0ahn.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/80" />
       <div className="absolute inset-0 bg-primary-navy/30" />
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center px-4 py-4 sm:py-6 lg:py-6 text-center sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 py-2 sm:py-4 text-center sm:px-6 lg:px-8">
         <NameBlocks />
         <Headline />
         <Subtitle />
         <SearchSection />
         <Chips />
-        <Stats />
+      </div>
+
+      <div className="relative z-10 w-full mt-auto">
+        <ServicesMarquee />
       </div>
     </section>
   );
@@ -82,13 +86,13 @@ function NameBlocks() {
       {indices.map((i) => (
         <div
           key={i}
-          className={`${large ? 'w-[40px] h-[52px] sm:w-10 sm:h-12' : 'w-[36px] h-[46px] sm:w-10 sm:h-12'} md:w-12 md:h-16 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
+          className={`${large ? 'w-[50px] h-[65px] sm:w-12 sm:h-16' : 'w-[44px] h-[58px] sm:w-12 sm:h-16'} md:w-16 md:h-24 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
             revealed[i]
               ? 'bg-white/10 border-gold-accent/40 shadow-lg shadow-gold-accent/10'
               : 'bg-white/5 border-white/15'
           }`}
         >
-          <span className={`${large ? 'text-[20px]' : 'text-[18px]'} sm:text-2xl md:text-4xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
+          <span className={`${large ? 'text-[25px]' : 'text-[22px]'} sm:text-3xl md:text-5xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
             revealed[i] ? 'text-gold-accent' : 'text-white/70'
           }`}>
             {letters[i]}
@@ -117,13 +121,13 @@ function NameBlocks() {
           ) : (
             <div
               key={i}
-              className={`w-10 h-14 md:w-12 md:h-16 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
+              className={`w-12 h-[72px] md:w-16 md:h-24 flex items-center justify-center rounded-md backdrop-blur-md border transition-all duration-300 ${
                 revealed[i]
                   ? 'bg-white/10 border-gold-accent/40 shadow-lg shadow-gold-accent/10'
                   : 'bg-white/5 border-white/15'
               }`}
             >
-              <span className={`text-[26px] md:text-4xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
+              <span className={`text-3xl md:text-5xl font-black tabular-nums transition-colors duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
                 revealed[i] ? 'text-gold-accent' : 'text-white/70'
               }`}>
                 {letters[i]}
@@ -138,7 +142,7 @@ function NameBlocks() {
 
 function Headline() {
   return (
-    <h1 className="text-[30px] xs:text-[32px] sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-white mb-2 sm:mb-3 leading-[1.1] tracking-tight">
+    <h1 className="text-4xl xs:text-[38px] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 sm:mb-3 leading-[1.1] tracking-tight">
       PRESTIGE HAS AN ADDRESS,
       <br />
       <span className="text-gold-accent">IT&apos;S EAST OF KAILASH</span>
@@ -340,30 +344,6 @@ function Chips() {
         <Plus className="w-3.5 h-3.5" />
         List Your Property
       </button>
-    </div>
-  );
-}
-
-function Stats() {
-  const stats = [
-    { value: '50+', label: 'Years of Trust' },
-    { value: '7', label: 'Residential Blocks' },
-    { value: '14', label: 'Areas Mapped' },
-    { value: '1,000+', label: 'Families Served' },
-  ];
-
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-5 sm:gap-6 md:gap-10 pt-5 sm:pt-6 mt-1 border-t border-white/20 w-full max-w-[92%] xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl">
-      {stats.map((stat) => (
-        <div key={stat.label} className="text-center">
-          <div className="text-[26px] xs:text-[28px] sm:text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-gold-accent drop-shadow-lg">
-            {stat.value}
-          </div>
-          <div className="text-[10px] sm:text-xs md:text-sm text-white/50 mt-1 uppercase tracking-wider font-medium">
-            {stat.label}
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
