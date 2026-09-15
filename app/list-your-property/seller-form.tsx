@@ -3,6 +3,8 @@
 import { useState, useMemo, useEffect, FormEvent } from 'react';
 import { ArrowRight, ArrowLeft, Send, CheckCircle2, ChevronDown } from 'lucide-react';
 import { getReferredBy } from '@/lib/referral-storage';
+import { getDb } from '@/lib/firebase';
+import { addDoc, collection } from 'firebase/firestore';
 import {
   PROPERTY_TYPE_OPTIONS, SELL_CONFIG,
   TRANSACTION_OPTS, POSSESSION_STATUS_OPTS, OCCUPANCY_OPTS,
@@ -197,7 +199,49 @@ export function SellerForm() {
     if (step > 0) setStep(step - 1);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const saveToFirebase = async () => {
+    const db = getDb();
+    const colRef = collection(db, 'form_submissions', 'submissions', 'eastofkailash-list');
+    const payload: Record<string, unknown> = {
+      Name: values.sellerName || '',
+      Mobile_Number: values.mobile || '',
+      Property_Type: propType || '',
+      City: 'Delhi',
+      Locality_Area: values.locality || '',
+      Address: values.address || '',
+      Pin_Code: '110065',
+      Transaction_Type: values.transactionType || '',
+      Possession_Status: values.possessionStatus || '',
+      Occupancy_Status: isResale ? (values.occupancyStatus || '') : undefined,
+      Expected_Price: values.expectedValue || '',
+      Price_Negotiability: values.negotiability || '',
+      Ownership_Type: values.ownershipType || '',
+      Existing_Loan: values.existingLoan || '',
+      Legal_Disputes: values.legalDispute || '',
+      Documents_Available: values.documentsAvailable || '',
+      Referral_Code: values.referralCode?.trim() || undefined,
+      Property_Age: !isLandType ? (values.propertyAge || '') : undefined,
+      Flooring: !isLandType ? (values.flooring || '') : undefined,
+      Water_Supply: !isLandType ? (values.waterSupply || '') : undefined,
+      Amenities: values.amenities || undefined,
+      datetime: new Date().toLocaleString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+      type: 'Property_Owner',
+    };
+    if (currentStep?.key === 'specs' || activeSteps.some(s => s.key === 'specs')) {
+      typeConfig.forEach(fd => {
+        if (values[fd.key]) {
+          const key = fd.label.replace(/[^a-zA-Z ]/g, '').trim().replace(/\s+/g, '_');
+          payload[key] = values[fd.key];
+        }
+      });
+    }
+    Object.keys(payload).forEach(k => {
+      if (payload[k] === undefined) delete payload[k];
+    });
+    await addDoc(colRef, payload);
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const allErrors: Record<string, string> = {};
     activeSteps.forEach(s => {
@@ -286,6 +330,7 @@ export function SellerForm() {
 
     const message = lines.join('\n');
     const url = site.whatsapp(message);
+    try { await saveToFirebase(); } catch {}
     window.open(url, '_blank');
     setSubmitted(true);
     setSubmitting(false);
