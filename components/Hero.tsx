@@ -2,14 +2,13 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, MapPin, Building2, TrendingUp, Plus } from 'lucide-react';
+import { Search, MapPin, Building2, TrendingUp, Plus, Briefcase } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
 import { ServicesMarquee } from './ServicesMarquee';
 
 const locations = [
   'Block A', 'Block B', 'Block C', 'Block D', 'Block E', 'Block F', 'Block G',
-  'DDA Flats', 'Schools', 'Hospitals', 'Nursing Home',
-  'Community Centre', 'Cinema Hall',
+  'DDA Flats'
 ];
 
 const quickFilters: never[] = [];
@@ -331,18 +330,18 @@ function Chips() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-3.5 sm:mb-5 max-w-full px-1">
       <button
-        onClick={() => router.push('/circle-rates')}
-        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-xs sm:text-sm font-medium transition-all duration-200"
-      >
-        <TrendingUp className="w-3.5 h-3.5" />
-        Circle Rates
-      </button>
-      <button
         onClick={() => router.push('/list-your-property')}
         className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gold-accent hover:bg-gold-accent/90 border border-gold-accent text-primary-navy text-xs sm:text-sm font-semibold transition-all duration-200"
       >
         <Plus className="w-3.5 h-3.5" />
         List Your Property
+      </button>
+      <button
+        onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-xs sm:text-sm font-medium transition-all duration-200"
+      >
+        <Briefcase className="w-3.5 h-3.5" />
+        Explore Services
       </button>
     </div>
   );

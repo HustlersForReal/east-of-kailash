@@ -2,6 +2,7 @@
 
 import { Handshake, ArrowRight, BadgePercent, Users, ShieldCheck } from "lucide-react";
 import { site } from "@/lib/site";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 export function PartnershipReferralSection() {
   const points = [
@@ -24,15 +25,13 @@ export function PartnershipReferralSection() {
             <p className="font-sans text-sm sm:text-base text-secondary-text max-w-md mx-auto lg:mx-0 mb-6">
               Know someone buying or selling in East of Kailash? Refer them to {site.name} and earn referral rewards on every closed deal.
             </p>
-            <a
-              href={site.whatsapp(`Hello ${site.name}, I want to partner with you as a referral partner.`)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              message={`Hello ${site.name}, I want to partner with you as a referral partner.`}
               className="inline-flex items-center justify-center gap-2 bg-primary-navy hover:bg-secondary-navy text-white font-bold rounded-lg px-8 py-3.5 text-sm sm:text-base transition-colors"
             >
               Become a Partner
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </WhatsAppLink>
           </div>
           <div className="grid gap-3 sm:gap-4">
             {points.map((p) => (

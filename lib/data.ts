@@ -436,7 +436,11 @@ export const investmentReasons = [
   { title: "Complete Amenity Belt", desc: "Schools, hospitals and nursing homes inside the colony itself." },
   { title: "Dual Commercial Centres", desc: "Two buzzing Community Centre markets anchor daily commerce." },
   { title: "Entertainment On Site", desc: "Its own cinema hall keeps the commercial strip alive all week." },
-  { title: "Long-term Investment", desc: "Historically proven appreciation and stable rental yields." }
+  { title: "Long-term Investment", desc: "Historically proven appreciation and stable rental yields." },
+  { title: "All Ages, All Seasons", desc: "Playfulness for children, mindfulness for teenagers, vibrancy for youngsters, and peacefulness for the elderly." },
+  { title: "Every Facility, At Your Door", desc: "Wide roads, cleanliness, dense parks, and reliable connectivity — the basics are always covered." },
+  { title: "Metro, Schools & Markets", desc: "Metro stations, top schools, leading hospitals, restaurants, and bustling markets — everything nearby." },
+  { title: "More Than Home — An Achievement", desc: "Owning a property here gives comfort, guarantees higher returns, and secures your financial future." }
 ];
 
 export const articles = [

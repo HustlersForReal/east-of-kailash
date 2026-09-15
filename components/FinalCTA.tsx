@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { site } from '@/lib/site';
+import { WhatsAppLink } from './WhatsAppLink';
 
 export function FinalCTA() {
   return (
@@ -23,14 +24,12 @@ export function FinalCTA() {
           >
             Explore Properties
           </Link>
-          <a
-            href={site.whatsapp(`Hello ${site.name}, I want to talk to an expert about property in East of Kailash.`)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppLink
+            message={`Hello ${site.name}, I want to talk to an expert about property in East of Kailash.`}
             className="bg-transparent border-2 border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-semibold uppercase tracking-wider transition-all duration-300"
           >
             Talk to an Expert
-          </a>
+          </WhatsAppLink>
         </div>
       </div>
     </section>

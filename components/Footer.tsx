@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ExternalLink, X, CheckCircle2, Search, FileText, FilePen, Shield, Scale, PhoneCall, ChevronDown, ArrowRight } from "lucide-react";
+import { getReferralUrl, getReferralMessage } from "@/lib/referral-storage";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 // ─── Data ──────────────────────────────────────────────────────────
 const partnerTypes = [
@@ -60,8 +62,9 @@ function PropertyBaapWatermark() {
 
 // ─── Main Footer ─────────────────────────────────────────────────
 export function FooterFinal({
-  signupUrl = "https://thenewsaledeed.pages.dev/reference-giver?tab=signup",
-  loginUrl = "https://thenewsaledeed.pages.dev/reference-giver?tab=login",
+  
+  signupUrl = "https://propertybaap.com/referral-signup",
+  loginUrl = "https://propertybaap.com/referral-login",
 }: {
   signupUrl?: string;
   loginUrl?: string;
@@ -105,7 +108,7 @@ export function FooterFinal({
     setContactErrors(errors);
     if (Object.keys(errors).length > 0) return;
     const message = `Hello EastOfKailash.com, I want to get in touch.\n\nName: ${contactForm.name}\nPhone: ${contactForm.phone}\nMessage: ${contactForm.message}`;
-    window.open(`https://wa.me/918800505050?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(getReferralUrl(`https://wa.me/918800505050?text=${encodeURIComponent(getReferralMessage(message))}`), "_blank");
   };
 
   const handlePartnerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -113,7 +116,7 @@ export function FooterFinal({
     const cleanedPhone = partnerForm.phone.replace(/[\s\-()]/g, "");
     if (!partnerForm.type || !/^(\+91|91|0)?[6-9]\d{9}$/.test(cleanedPhone)) return;
     const whatsappMessage = `Hello EastOfKailash.com, I want to register as a partner.\n\nName: ${partnerForm.name}\nPhone: ${partnerForm.phone}\nPartner Type: ${partnerForm.type}\nDetails: ${partnerForm.message}`;
-    window.open(`https://wa.me/918800505050?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
+    window.open(getReferralUrl(`https://wa.me/918800505050?text=${encodeURIComponent(getReferralMessage(whatsappMessage))}`), "_blank");
     setShowPartnerModal(false);
   };
 
@@ -124,9 +127,9 @@ export function FooterFinal({
         <section id="contact" className="scroll-mt-24 border-b border-primary/10 bg-light-navy py-10 sm:py-16">
           <div className="mx-auto grid max-w-6xl gap-8 px-4 text-center sm:px-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-center lg:gap-16 lg:text-left">
             <div>
-              <h2 className="mb-4 font-extrabold text-4xl tracking-[-0.03em] text-primary-navy sm:text-6xl">Contact Us</h2>
+              <h2 className="mb-4 font-extrabold text-4xl tracking-[-0.03em] text-primary-navy sm:text-6xl">Get Private Consultation</h2>
               <p className="mx-auto max-w-md font-sans text-sm leading-relaxed text-secondary-text sm:text-base lg:mx-0">
-                Have a question about your property matter? Share your details and our team will get back to you confidentially.
+                Need discreet, one-on-one guidance on your property matter? Share your details and a senior Property Baap consultant will reach out to you directly and confidentially.
               </p>
             </div>
             <form onSubmit={handleContactSubmit} className="grid gap-3 rounded-xl border border-border-color bg-white p-4 sm:grid-cols-2 sm:p-6">
@@ -182,12 +185,13 @@ export function FooterFinal({
             <p className="font-sans text-sm sm:text-lg text-secondary-text mb-6 sm:mb-10 max-w-xl mx-auto">
               We boldly present our one call challenge to prove that we are the best people to deal with when it comes to one of your most valuable possessions - <span className="text-primary font-bold">Your Property</span>
             </p>
-            <a
-              href={`https://wa.me/918800505050?text=${encodeURIComponent("*Hello EastOfKailash.com, I Accept Your 1 Call Challenge.*")}`}
+            <WhatsAppLink
+              message="*Hello EastOfKailash.com, I Accept Your 1 Call Challenge.*"
+              phone="918800505050"
               className="font-sans px-6 sm:px-10 py-3 sm:py-5 bg-primary hover:bg-primary text-white font-bold rounded-lg transition-all text-base sm:text-lg inline-flex items-center justify-center gap-3 shadow-lg shadow-primary/20"
             >
               Accept The Challenge
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
 
@@ -245,7 +249,7 @@ export function FooterFinal({
         <section id="brand-story" className="scroll-mt-20 border-b border-primary/10 bg-white py-12 sm:py-20">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div className="mb-10 text-center sm:mb-14">
-              <h2 className="font-serif text-3xl font-black text-primary-navy sm:text-5xl">Brand Story</h2>
+              <h2 className="font-serif text-3xl font-black text-primary-navy sm:text-5xl">Our Brand Story</h2>
               <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-primary/30" />
             </div>
             <div className="space-y-6 text-[15px] leading-relaxed text-secondary-text sm:text-[17px]">
@@ -268,7 +272,7 @@ export function FooterFinal({
                     <p>
                       With a life exposed to many situations where the only way out was <span className="font-bold text-primary-navy">Do or Die</span>, the only option was survival and sustenance, routed through one belief: <span className="font-bold text-primary">MUST FIGHT. MUST WIN.</span>
                     </p>
-                    <p>What was initially scary gradually became thrilling. That experience became a daily routine and eventually started reflecting everywhere, personally as well as professionally.</p>
+                    <p>What was initially scary gradually became thrilling. That experience became a daily routine - and eventually started reflecting everywhere, personally as well as professionally.</p>
                     <h3 className="pt-4 text-center font-sans text-[17px] font-black uppercase tracking-[0.08em] text-primary-navy sm:text-[19px]">Professional Pinch &amp; Punch</h3>
                     <p>The profession never welcomed me in the way I expected it to. Denials. Disapprovals. Disappointments. They all led to one thing: <span className="font-bold text-primary">DARE.</span></p>
                     <p>The one who wholeheartedly dares literally does not care. That <span className="font-bold text-primary-navy">Dare Without Care</span> created an attitude that became <span className="font-bold text-primary-navy">Rare</span>.</p>
@@ -277,6 +281,7 @@ export function FooterFinal({
                     <h3 className="pt-4 text-center font-sans text-[17px] font-black uppercase tracking-[0.08em] text-primary-navy sm:text-[19px]">Done Hain</h3>
                     <p>When a query comes to us, we are psychologically prepared and trained to believe we will be able to handle, execute &amp; accomplish it and never discard it because it is small, irrelevant or seemingly less profitable.</p>
                     <p className="flex items-center justify-center gap-2 text-center font-bold text-primary">In our Mind It Is Already — Done Hain <CheckCircle2 className="h-5 w-5 text-primary" /></p>
+                    <p>We see it as: <span className="font-bold text-primary">An opportunity to learn. An opportunity to solve. An opportunity to start a new journey,</span> with someone we already know or someone we have just met.</p>
                     <p>We don&apos;t claim to do wonders. But we do assure you of <span className="font-bold text-primary">saving you from blunders.</span></p>
                     <h3 className="pt-6 text-center font-serif text-xl font-black text-primary-navy sm:text-2xl">Property Baap — The Meaning</h3>
                     <p>A father is not merely someone who commands the utmost respect. A father inherently carries the utmost responsibility. He provides an answer to your every question, no matter how silly it may seem, and searches for a solution to your every problem. Sometimes he gives you exactly what you want. Sometimes he tells you what is right and practical. A father is, in many ways, our one-stop solution provider in any given situation.</p>
@@ -371,6 +376,9 @@ export function FooterFinal({
                 <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base md:mx-0">
                   Whether you are a student, homemaker, business owner, working professional, delivery partner, senior citizen, person with a disability, unemployed, or simply looking for an additional source of passive income - you can become a part of our network.
                 </p>
+                <p className="mx-auto mt-4 max-w-2xl text-base sm:text-xl font-extrabold leading-snug text-[#C9953C] md:mx-0">
+                  Just Refer Someone About Any Of Our Property Services And You&apos;re Good To Go.
+                </p>
                 <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-white sm:mt-6 sm:text-xs sm:tracking-[0.14em] md:justify-start">
                   {["Zero Liability", "Zero Joining Fee", "Zero Conditions"].map((benefit) => (
                     <span key={benefit} className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs backdrop-blur-sm sm:px-4 sm:py-2 sm:text-xs">{benefit}</span>
@@ -435,7 +443,7 @@ export function FooterFinal({
 
         {/* ── Bottom Bar ── */}
         <div className="bg-[#0A1628] w-full py-5 px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/10">
-          <p className="font-sans text-white text-[10px] sm:text-xs tracking-wide order-2 sm:order-1">&copy; 2026 EastOfKailash.com &middot; All Rights Reserved</p>
+          <p className="font-sans text-white text-[10px] sm:text-xs tracking-wide order-2 sm:order-1">EastOfKailash.com &copy; 2026 &middot; All Rights Reserved</p>
           <p className="font-sans font-medium text-xs sm:text-sm order-1 sm:order-2 text-white">
             <span className="mr-2 text-white">Incredible</span>
             <span style={{ color: "#FF9933" }}>In</span>

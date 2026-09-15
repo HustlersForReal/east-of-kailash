@@ -1,6 +1,3 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-
 export function StoryOfEOK() {
   return (
     <section className="py-14 sm:py-20 md:py-24 lg:py-32 bg-primary-navy text-white relative overflow-hidden">
@@ -32,13 +29,6 @@ export function StoryOfEOK() {
             Reach us to know the ins and outs of East of Kailash.
           </p>
         </div>
-        <Link
-          href="/about"
-          className="inline-flex items-center gap-2 bg-transparent border-2 border-gold-accent text-gold-accent hover:bg-gold-accent hover:text-primary-navy px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold uppercase tracking-wider transition-all duration-300"
-        >
-          Explore the Story
-          <ArrowRight className="w-4 h-4" />
-        </Link>
       </div>
     </section>
   );

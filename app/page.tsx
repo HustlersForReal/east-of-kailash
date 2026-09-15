@@ -16,12 +16,12 @@ export default function Home() {
     <>
       <Hero />
       <FeaturedProperties />
+      <OriginOfEOK />
       <ExploreEOK />
       <OurServices />
       <SaveMyMoney />
       <StrategicPartnerships />
       <StoryOfEOK />
-      <OriginOfEOK />
       <WhyInvest />
       <TrustStats />
       <Insights />

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info, Camera } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
 import { site } from '@/lib/site';
+import { WhatsAppLink } from './WhatsAppLink';
 
 export function Navbar() {
   const [exploreOpen, setExploreOpen] = useState(false);
@@ -58,7 +59,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <a href={site.whatsapp(`Hello ${site.name}, I want to get in touch.`)} target="_blank" rel="noopener noreferrer" className={`bg-primary-navy text-white px-3 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-sm font-semibold uppercase tracking-wider hover:bg-gold-accent hover:text-primary-navy transition-colors whitespace-nowrap ${mobileOpen ? 'hidden lg:inline-flex' : 'inline-flex'}`}>Contact</a>
+            <WhatsAppLink message={`Hello ${site.name}, I want to get in touch.`} className={`bg-primary-navy text-white px-3 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-sm font-semibold uppercase tracking-wider hover:bg-gold-accent hover:text-primary-navy transition-colors whitespace-nowrap ${mobileOpen ? 'hidden lg:inline-flex' : 'inline-flex'}`}>Contact</WhatsAppLink>
             <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 -mr-1 text-primary-navy hover:text-gold-accent transition-colors" aria-label="Toggle menu">
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -88,7 +89,7 @@ export function Navbar() {
             <Link href="/exclusive-deals" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Star className="w-4 h-4 text-gold-accent" /> Exclusive Deals</Link>
             <Link href="/about" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Info className="w-4 h-4 text-gold-accent" /> About Us</Link>
             <div className="pt-4 mt-2 border-t border-border-color">
-              <a href={site.whatsapp(`Hello ${site.name}, I want to get in touch.`)} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center justify-center gap-2 bg-primary-navy text-white px-4 py-3 text-sm font-semibold uppercase tracking-wider rounded-xl hover:bg-gold-accent hover:text-primary-navy transition-colors w-full">Contact / WhatsApp</a>
+              <WhatsAppLink message={`Hello ${site.name}, I want to get in touch.`} onClick={() => setMobileOpen(false)} className="flex items-center justify-center gap-2 bg-primary-navy text-white px-4 py-3 text-sm font-semibold uppercase tracking-wider rounded-xl hover:bg-gold-accent hover:text-primary-navy transition-colors w-full">Contact / WhatsApp</WhatsAppLink>
             </div>
           </nav>
         </div>

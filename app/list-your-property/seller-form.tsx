@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useMemo, FormEvent } from 'react';
+import { useState, useMemo, useEffect, FormEvent } from 'react';
 import { ArrowRight, ArrowLeft, Send, CheckCircle2, ChevronDown } from 'lucide-react';
+import { getReferredBy } from '@/lib/referral-storage';
 import {
   PROPERTY_TYPE_OPTIONS, SELL_CONFIG,
   TRANSACTION_OPTS, POSSESSION_STATUS_OPTS, OCCUPANCY_OPTS,
@@ -29,6 +30,7 @@ const SELL_STEPS: StepDef[] = [
   { key: 'amenities', title: 'Amenities & Facilities' },
   { key: 'extra', title: 'Additional Details' },
   { key: 'ownership', title: 'Ownership & Docs' },
+  { key: 'referral', title: 'Referral Code' },
 ];
 
 const STEP_FIELDS: Record<string, string[]> = {
@@ -38,6 +40,7 @@ const STEP_FIELDS: Record<string, string[]> = {
   transaction: ['transactionType', 'possessionStatus', 'occupancyStatus'],
   price: ['expectedValue'],
   ownership: ['ownershipType', 'existingLoan', 'legalDispute'],
+  referral: ['referralCode'],
 };
 
 export function SellerForm() {
@@ -46,6 +49,14 @@ export function SellerForm() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const code = getReferredBy();
+    if (code) {
+      const short = code.replace(/^#/, '');
+      setValues(prev => (prev.referralCode ? prev : { ...prev, referralCode: short }));
+    }
+  }, []);
 
   const propType = values.assetType || '';
   const typeConfig = useMemo(() => SELL_CONFIG[propType] || [], [propType]);
@@ -263,6 +274,10 @@ export function SellerForm() {
       `*Dispute/Litigation:* ${values.legalDispute || '—'}`,
       `*Documents Available:* ${values.documentsAvailable || '—'}`,
     );
+
+    if (values.referralCode?.trim()) {
+      lines.push(`*Referral Code:* ${values.referralCode.trim()}`);
+    }
 
     const now = new Date();
     const dateStr = now.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -504,9 +519,23 @@ export function SellerForm() {
               />
             </div>
           )}
+          {currentStep?.key === 'referral' && (
+            <div className="space-y-4">
+              <p className="text-white/60 text-sm mb-2">Have a referral code? Enter it below to give credit to your referrer.</p>
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-white/60 block mb-1.5">Referral Code (Optional)</label>
+                <input
+                  type="text"
+                  value={values.referralCode || ''}
+                  onChange={e => set('referralCode', e.target.value.toUpperCase())}
+                  className="w-full px-4 py-3 border border-white/20 bg-white/10 text-white text-sm outline-none focus:border-gold-accent transition-colors placeholder:text-white/30"
+                  placeholder="e.g. PB12345A"
+                />
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Navigation */}
         <div className="flex items-center gap-3 mt-6 pt-6 border-t border-white/10">
           {step > 0 && (
             <button

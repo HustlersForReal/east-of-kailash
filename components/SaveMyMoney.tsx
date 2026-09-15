@@ -63,7 +63,7 @@ export function SaveMyMoney() {
           <div className="lg:col-span-7">
             <span className="text-gold-accent font-semibold tracking-widest uppercase text-[11px] sm:text-xs mb-3 sm:mb-4 block">Why Choose Us</span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-navy mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-              We Are The Only 1 To Serve You As A One Stop Shop For Everything Related To Property.
+              Your One Stop Shop For Everything Property.
             </h2>
             <p className="text-secondary-text text-base sm:text-lg leading-relaxed mb-4">
               From the founders of saledeed.com, EastOfKailash.com is an entity which has been trusted and appreciated by thousands of property owners. An Actual One Stop Shop that provides comprehensive services covering your entire real estate journey at a single platform.
