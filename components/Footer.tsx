@@ -365,9 +365,10 @@ export function FooterFinal({
             <div className="mb-7 flex flex-col items-center gap-2 border-b border-white/20 pb-6 text-center sm:mb-10">
               <p className="mb-10 font-mono text-base font-black tracking-[0.15em] text-[#C9953C] sm:mb-8 sm:text-base">Property Baap Referral Network</p>
               <h2 className="font-sans text-4xl font-black tracking-[0.03em] text-white sm:text-6xl">#HarGharDealer</h2>
-              <p className="text-base font-semibold leading-relaxed text-[#C9953C] sm:text-xl">You Refer <span className="mx-1">•</span> We Execute <span className="mx-1">•</span> You Earn</p>
+              <p className="mt-2 font-sans text-xl sm:text-2xl font-black tracking-[0.06em] text-[#C9953C]">Deal Lao - Paisa Kamao</p>
             </div>
-            <p className="mx-auto mb-6 max-w-3xl text-center font-serif text-lg font-bold tracking-wide text-[#C9953C] sm:text-2xl">Property Baap Proudly Welcomes You To Its Referral Network.</p>
+            <p className="mx-auto mt-1 max-w-3xl text-center text-base font-semibold leading-relaxed text-[#C9953C] sm:text-xl">You Refer <span className="mx-1">•</span> We Execute <span className="mx-1">•</span> You Earn</p>
+            <p className="mx-auto mb-6 mt-4 max-w-3xl text-center font-serif text-lg font-bold tracking-wide text-[#C9953C] sm:text-2xl">Property Baap Proudly Welcomes You To Its Referral Network.</p>
             <div className="grid gap-7 text-center md:text-left lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
               <div>
                 <p className="mx-auto max-w-2xl text-lg font-extrabold leading-tight text-white sm:text-3xl md:mx-0">
@@ -377,7 +378,7 @@ export function FooterFinal({
                   Whether you are a student, homemaker, business owner, working professional, delivery partner, senior citizen, person with a disability, unemployed, or simply looking for an additional source of passive income - you can become a part of our network.
                 </p>
                 <p className="mx-auto mt-4 max-w-2xl text-base sm:text-xl font-extrabold leading-snug text-[#C9953C] md:mx-0">
-                  Just Refer Someone About Any Of Our Property Services And You&apos;re Good To Go.
+                  Just Refer Someone About Any Of Our Property Services And You&apos;re Done.
                 </p>
                 <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-white sm:mt-6 sm:text-xs sm:tracking-[0.14em] md:justify-start">
                   {["Zero Liability", "Zero Joining Fee", "Zero Conditions"].map((benefit) => (
