@@ -177,7 +177,7 @@ export function FooterFinal({
               <PhoneCall className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
             </div>
             <h2 className="font-extrabold text-3xl sm:text-4xl md:text-6xl text-primary-navy mb-4 sm:mb-6 tracking-[-0.02em]">
-              <span className="text-primary">1 Call</span> Challenge
+              <span className="text-gold-accent">1 Call</span> Challenge
             </h2>
             <p className="font-sans text-base sm:text-xl text-primary-navy/80 mb-2 max-w-2xl mx-auto">
               Pick up the phone. <span className="text-primary font-bold">Reach Us Once</span>.
@@ -203,7 +203,7 @@ export function FooterFinal({
               <h2 className="mx-auto mb-5 w-fit rounded-full border border-primary/20 bg-primary px-6 py-2.5 font-extrabold text-2xl sm:text-3xl text-white tracking-[-0.02em] shadow-[0_8px_20px_rgba(22,56,37,0.14)]">Need More Services?</h2>
               <div className="flex flex-col items-center justify-center gap-2">
                 <h3 className="font-sans text-4xl sm:text-6xl font-black uppercase tracking-[0.06em] text-primary-navy">
-                  Property <span className="text-primary">Baap</span>
+                  Property <span className="text-gold-accent">Baap</span>
                 </h3>
                 <p className="mb-2 font-extrabold text-xl sm:text-2xl text-primary tracking-[-0.02em]">Think Property, Think Baap</p>
               </div>
@@ -341,7 +341,7 @@ export function FooterFinal({
         {/* ── Partnership: Professional Network ── */}
         <section id="partner-section" className="scroll-mt-20 border-t border-border-color bg-light-navy py-16 sm:py-20">
           <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <p className="mb-10 font-mono text-base font-black tracking-[0.15em] text-primary sm:mb-8 sm:text-base">Property Baap Professional Network</p>
+            <p className="mb-10 font-mono text-base font-black tracking-[0.15em] text-gold-accent sm:mb-8 sm:text-base">Property Baap Professional Network</p>
             <h2 className="mb-6 font-serif text-3xl text-primary-navy md:text-4xl">Grow With Us, Partner With Property Baap Professional Network</h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-secondary-text md:text-xl">
               Are you a deed writer, property dealer, lawyer, architect, or an ex-government employee? Join Delhi&apos;s most trusted property network to get maximum rewards for your expertise &amp; years of hard work.
