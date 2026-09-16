@@ -108,7 +108,7 @@ export function FooterFinal({
     setContactErrors(errors);
     if (Object.keys(errors).length > 0) return;
     const message = `Hello EastOfKailash.com, I want to get in touch.\n\nName: ${contactForm.name}\nPhone: ${contactForm.phone}\nMessage: ${contactForm.message}`;
-    window.open(getReferralUrl(`https://wa.me/918800505050?text=${encodeURIComponent(getReferralMessage(message))}`), "_blank");
+    window.open(getReferralUrl(`https://wa.me/919811110065?text=${encodeURIComponent(getReferralMessage(message))}`), "_blank");
   };
 
   const handlePartnerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -116,7 +116,7 @@ export function FooterFinal({
     const cleanedPhone = partnerForm.phone.replace(/[\s\-()]/g, "");
     if (!partnerForm.type || !/^(\+91|91|0)?[6-9]\d{9}$/.test(cleanedPhone)) return;
     const whatsappMessage = `Hello EastOfKailash.com, I want to register as a partner.\n\nName: ${partnerForm.name}\nPhone: ${partnerForm.phone}\nPartner Type: ${partnerForm.type}\nDetails: ${partnerForm.message}`;
-    window.open(getReferralUrl(`https://wa.me/918800505050?text=${encodeURIComponent(getReferralMessage(whatsappMessage))}`), "_blank");
+    window.open(getReferralUrl(`https://wa.me/919811110065?text=${encodeURIComponent(getReferralMessage(whatsappMessage))}`), "_blank");
     setShowPartnerModal(false);
   };
 
@@ -187,7 +187,7 @@ export function FooterFinal({
             </p>
             <WhatsAppLink
               message="*Hello EastOfKailash.com, I Accept Your 1 Call Challenge.*"
-              phone="918800505050"
+              phone="919811110065"
               className="font-sans px-6 sm:px-10 py-3 sm:py-5 bg-primary hover:bg-primary text-white font-bold rounded-lg transition-all text-base sm:text-lg inline-flex items-center justify-center gap-3 shadow-lg shadow-primary/20"
             >
               Accept The Challenge

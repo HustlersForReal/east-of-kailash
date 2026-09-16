@@ -4,7 +4,7 @@ import { useReferredByCode } from '@/lib/referral-storage';
 
 export function WhatsAppLink({
   message,
-  phone = '919100110024',
+  phone = '919811110065',
   className,
   children,
   onClick,
