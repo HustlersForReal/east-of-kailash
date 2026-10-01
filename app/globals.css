@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'leaflet/dist/leaflet.css';
 
 @theme {
   --color-primary-navy: #163825;
@@ -22,6 +23,21 @@
 body {
   background-color: #FFFFFF;
   color: var(--color-primary-text);
+}
+
+/* Smooth scrolling for in-page anchors, e.g. the hero's "Special Offers" and
+   "Special Services" chips jumping to /#one-stop-shop and /#services, and the
+   "Refer & Earn" text jumping to #referral-section.
+   Sections that are anchor targets carry scroll-mt-* so the sticky navbar
+   does not cover their heading. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Hide Scrollbar */
@@ -56,7 +72,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .refer-earn {
     animation: none;
   }
 }
@@ -69,4 +86,30 @@ body {
 
 .ref-pop-in {
   animation: ref-pop-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Leaflet map, keep below navbar/dropdowns.
+   Leaflet paints its panes at z-index 400-1000, which would otherwise sit
+   above the sticky Navbar and the custom dropdown panels. */
+.leaflet-container,
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 0 !important;
+}
+
+/* Hero "Refer & Earn": gold text with a soft pulsing glow. */
+@keyframes refer-earn-glow {
+  0%, 100% {
+    color: #C9A227;
+    text-shadow: 0 0 10px rgba(201, 162, 39, 0.4);
+  }
+  50% {
+    color: #F0D98A;
+    text-shadow: 0 0 26px rgba(201, 162, 39, 0.9), 0 0 44px rgba(201, 162, 39, 0.45);
+  }
+}
+
+.refer-earn {
+  animation: refer-earn-glow 2.4s ease-in-out infinite;
 }

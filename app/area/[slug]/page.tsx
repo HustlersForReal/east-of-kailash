@@ -164,6 +164,35 @@ export default async function AreaPage({
                   </p>
                 </div>
 
+                {/* Act on this area — carries the area into both forms */}
+                <div className="border border-border-color p-6 sm:p-8">
+                  <h3 className="text-lg font-bold text-primary-navy mb-2">
+                    Looking in {area.name}?
+                  </h3>
+                  <p className="text-secondary-text text-sm mb-5 leading-relaxed">
+                    Tell us what you need, or list what you have. We&apos;ll call you back.
+                  </p>
+                  <div className="space-y-2.5">
+                    <Link
+                      href={`/submit-your-requirement?area=${area.slug}`}
+                      className="w-full flex items-center justify-center gap-2 bg-gold-accent hover:bg-white text-primary-navy py-3 text-sm font-semibold transition-all duration-300 uppercase tracking-wider"
+                    >
+                      Submit Your Requirement
+                      <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                    <Link
+                      href={`/list-your-property?area=${area.slug}`}
+                      className="w-full flex items-center justify-center gap-2 bg-primary-navy hover:bg-gold-accent text-white hover:text-primary-navy py-3 text-sm font-semibold transition-all duration-300 uppercase tracking-wider"
+                    >
+                      List Your Property
+                      <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                  <p className="text-[11px] text-secondary-text/50 mt-3.5 leading-relaxed">
+                    {area.name} is pre-selected in the form.
+                  </p>
+                </div>
+
                 {/* CTA Card */}
                 <div className="border border-border-color p-6 sm:p-8">
                   <h3 className="text-lg font-bold text-primary-navy mb-2">

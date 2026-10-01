@@ -19,7 +19,7 @@ const values = [
 const milestones = [
   { year: '1960s', title: 'The Beginning', desc: 'The Saxena family starts real estate operations in South Delhi.' },
   { year: '1990s', title: 'Expansion', desc: 'Growing expertise across East of Kailash and the surrounding colonies.' },
-  { year: '2010s', title: 'Digital Era', desc: 'Launch of saledeed.com and comprehensive online services.' },
+  { year: '2010s', title: 'Digital Era', desc: 'Launch of propertybaap.com and comprehensive online services.' },
   { year: 'Today', title: 'EastOfKailash.com', desc: 'A hyperlocal platform serving 1,000+ families across the colony.' },
 ];
 

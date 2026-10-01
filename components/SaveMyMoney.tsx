@@ -1,4 +1,4 @@
-import { BadgeIndianRupee, UserCheck, Sparkles, Lock, Eye, Search, Shield, CreditCard, Heart, Gift } from 'lucide-react';
+import { BadgeIndianRupee, UserCheck, Sparkles, Lock, Eye, Search, Shield, CreditCard, Heart, FileSignature, ArrowLeftRight, TrendingUp, Zap } from 'lucide-react';
 
 const features = [
   {
@@ -44,64 +44,61 @@ const features = [
   {
     icon: Heart,
     title: "Forever With You",
-    description: "Lifelong Relationship. We were there, we are still here and we will always be there for you. We don't believe in kaam khatam – Baat Khatam.",
+    description: "Lifelong Relationship. We were there, we are still here and we will always be there for you. We don't believe in kaam khatam - Baat Khatam.",
   },
-];
-
-const bonuses = [
-  "Free sale deed / rent agreement registration.",
-  "Free mutation (transfer of property title).",
-  "Free valuation reports (capital gain / market value).",
-  "Free electricity / Water mutation.",
+  {
+    icon: FileSignature,
+    title: "Free Sale Deed & Rent Agreement",
+    description: "Registration of your sale deed or rent agreement is on us.",
+  },
+  {
+    icon: ArrowLeftRight,
+    title: "Free Property Mutation",
+    description: "Mutation, that is the transfer of property title, done at no cost.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Free Valuation Reports",
+    description: "Valuation reports for capital gain and market value, on us.",
+  },
+  {
+    icon: Zap,
+    title: "Free Utility Mutation",
+    description: "Free electricity and water mutation.",
+  },
 ];
 
 export function SaveMyMoney() {
   return (
-    <section className="py-14 sm:py-20 md:py-24 lg:py-32 bg-white">
+    <section id="one-stop-shop" className="py-14 sm:py-20 md:py-24 lg:py-32 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 mb-10 sm:mb-14">
-          <div className="lg:col-span-7">
-            <span className="text-gold-accent font-semibold tracking-widest uppercase text-[11px] sm:text-xs mb-3 sm:mb-4 block">Why Choose Us</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-navy mb-4 sm:mb-6 tracking-tight leading-[1.1]">
-              Your One Stop Shop For Everything Property.
-            </h2>
-            <p className="text-secondary-text text-base sm:text-lg leading-relaxed mb-4">
-              From the founders of saledeed.com, EastOfKailash.com is an entity which has been trusted and appreciated by thousands of property owners. An Actual One Stop Shop that provides comprehensive services covering your entire real estate journey at a single platform.
-            </p>
-            <p className="text-secondary-text text-sm sm:text-base leading-relaxed">
-              There is no one who can serve you the way we do. We not only save your time but also give you combination of packages that saves your overall cost for your specific property need.
-            </p>
-          </div>
-          <div className="lg:col-span-5 flex items-center">
-            <div className="bg-primary-navy text-white p-6 sm:p-8 w-full">
-              <div className="flex items-center gap-2 mb-4">
-                <Gift className="w-5 h-5 text-gold-accent" />
-                <h3 className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/60">
-                  Complementary Bonus
-                </h3>
-              </div>
-              <p className="text-light-navy/50 text-sm mb-5 leading-relaxed">
-                We are known to introduce a one of its kind complementary services on many of our deals like:
-              </p>
-              <ul className="space-y-3">
-                {bonuses.map((bonus, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="text-gold-accent mt-0.5 shrink-0">&#10003;</span>
-                    <span className="text-light-navy/70 text-sm leading-relaxed">{bonus}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="max-w-3xl mb-10 sm:mb-14">
+          <span className="text-gold-accent font-semibold tracking-widest uppercase text-[11px] sm:text-xs mb-3 sm:mb-4 block">Why Choose Us</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-navy mb-4 sm:mb-6 tracking-tight leading-[1.1]">
+            Your One Stop Shop For Everything Property.
+          </h2>
+          <p className="text-secondary-text text-base sm:text-lg leading-relaxed mb-4">
+            From the founders of propertybaap.com, EastOfKailash.com is an entity which has been trusted and appreciated by thousands of property owners. An Actual One Stop Shop that provides comprehensive services covering your entire real estate journey at a single platform.
+          </p>
+          <p className="text-secondary-text text-sm sm:text-base leading-relaxed">
+            There is no one who can serve you the way we do. We not only save your time but also give you combination of packages that saves your overall cost for your specific property need. And on many of our deals we add a one of its kind complementary service, on us.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {features.map((feature, idx) => {
             const Icon = feature.icon;
+            // 13 cards in a 3-up grid leaves one stranded on the last row.
+            // Span it and pin the width to a single column so it centres.
+            const isLast = idx === features.length - 1;
             return (
               <div
                 key={idx}
-                className="group flex items-start gap-4 px-5 sm:px-6 py-5 sm:py-6 bg-white border-[3px] border-primary-navy hover:border-gold-accent hover:shadow-md transition-all duration-200"
+                className={`group flex items-start gap-4 px-5 sm:px-6 py-5 sm:py-6 bg-white border-[3px] border-primary-navy hover:border-gold-accent hover:shadow-md transition-all duration-200 ${
+                  isLast
+                    ? 'col-span-full sm:col-span-2 lg:col-span-3 justify-self-center w-full sm:w-[calc((100%-0.75rem)/2)] lg:w-[calc((100%-2rem)/3)]'
+                    : ''
+                }`}
               >
                 <div className="w-11 h-11 rounded-lg bg-primary-navy flex items-center justify-center shrink-0 group-hover:bg-gold-accent transition-colors">
                   <Icon className="w-5 h-5 text-white group-hover:text-primary-navy transition-colors" />

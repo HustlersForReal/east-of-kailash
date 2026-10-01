@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, MapPin, Building2, TrendingUp, Plus, Briefcase } from 'lucide-react';
+import { Search, MapPin, Building2, TrendingUp, Plus, Briefcase, Send, Gift } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
 import { ServicesMarquee } from './ServicesMarquee';
 
@@ -28,6 +28,9 @@ export function Hero() {
         <Subtitle />
         <SearchSection />
         <Chips />
+        <div className="mt-7 sm:mt-9">
+          <ReferEarn />
+        </div>
       </div>
 
       <div className="relative z-10 w-full mt-auto">
@@ -142,9 +145,9 @@ function NameBlocks() {
 function Headline() {
   return (
     <h1 className="text-4xl xs:text-[38px] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 sm:mb-3 leading-[1.1] tracking-tight">
-      PRESTIGE HAS AN ADDRESS,
+      AAPKI TALAASH,
       <br />
-      <span className="text-gold-accent">IT&apos;S EAST OF KAILASH</span>
+      <span className="text-gold-accent">EAST OF KAILASH</span>
     </h1>
   );
 }
@@ -272,36 +275,28 @@ function SearchSection() {
   return (
     <div className="w-full max-w-[92%] xs:max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-2.5 sm:mb-3">
       <div className="relative">
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.35)] p-1.5 sm:p-2 flex flex-col sm:flex-row items-stretch gap-1.5 sm:gap-2">
-          <div className="relative flex-grow flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-3.5 sm:px-5 py-3.5 sm:py-4 rounded-xl min-w-0 border border-white/10">
-            <Search className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-white/70 shrink-0 relative z-10" />
-            <input
-              type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className="absolute inset-0 w-full h-full bg-transparent border-none outline-none text-white px-3 sm:px-5 pl-[42px] sm:pl-[52px] py-3.5 sm:py-4 text-[15px] sm:text-base z-20 caret-white placeholder:text-white/40"
-            />
-            {!userInput && !isFocused && (
-              <span className="absolute left-[42px] sm:left-[52px] right-3 top-1/2 -translate-y-1/2 text-[15px] sm:text-base pointer-events-none z-10 whitespace-nowrap overflow-hidden text-ellipsis text-left">
-                <span className="text-white/50">Search For </span>
-                <span className="text-white">{locationText}</span>
-                <span
-                  className={`inline-block w-[2px] h-[18px] sm:h-5 bg-white/70 ml-[1px] align-middle ${
-                    cursorVisible ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
-              </span>
-            )}
-          </div>
-          <button
-            onClick={handleSearch}
-            className="bg-gold-accent hover:bg-white text-primary-navy px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-[15px] sm:text-base transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg w-full sm:w-auto"
-          >
-            Search
-          </button>
+        <div className="relative flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.35)] px-3.5 sm:px-5 py-4 sm:py-5 min-w-0">
+          <Search className="w-5 h-5 sm:w-[22px] sm:h-[22px] text-white/70 shrink-0 relative z-10" />
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+            className="absolute inset-0 w-full h-full bg-transparent border-none outline-none text-white px-3 sm:px-5 pl-[42px] sm:pl-[54px] py-4 sm:py-5 text-base sm:text-[17px] z-20 caret-white placeholder:text-white/40"
+          />
+          {!userInput && !isFocused && (
+            <span className="absolute left-[42px] sm:left-[54px] right-3 top-1/2 -translate-y-1/2 text-base sm:text-[17px] pointer-events-none z-10 whitespace-nowrap overflow-hidden text-ellipsis text-left">
+              <span className="text-white/50">Search For </span>
+              <span className="text-white">{locationText}</span>
+              <span
+                className={`inline-block w-[2px] h-5 sm:h-[22px] bg-white/70 ml-[1px] align-middle ${
+                  cursorVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            </span>
+          )}
         </div>
         {isFocused && suggestions.length > 0 && (
           <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-border-color shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-xl p-2 max-h-[300px] overflow-y-auto z-50">
@@ -337,11 +332,53 @@ function Chips() {
         List Your Property
       </button>
       <button
-        onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white/70 hover:text-white text-xs sm:text-sm font-medium transition-all duration-200"
+        onClick={() => router.push('/submit-your-requirement')}
+        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gold-accent hover:bg-gold-accent/90 border border-gold-accent text-primary-navy text-xs sm:text-sm font-semibold transition-all duration-200"
+      >
+        <Send className="w-3.5 h-3.5" />
+        Submit Your Requirement
+      </button>
+      {/* Scrolls to the "Your One Stop Shop For Everything Property." section. */}
+      <button
+        onClick={() => router.push('/#one-stop-shop')}
+        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white hover:text-white text-xs sm:text-sm font-medium transition-all duration-200"
+      >
+        <Gift className="w-3.5 h-3.5" />
+        Special Offers
+      </button>
+      {/* Scrolls to the "Actions Speaks Louder Than Words" section. */}
+      <button
+        onClick={() => router.push('/#services')}
+        className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white hover:text-white text-xs sm:text-sm font-medium transition-all duration-200"
       >
         <Briefcase className="w-3.5 h-3.5" />
-        Explore Services
+        Special Services
+      </button>
+    </div>
+  );
+}
+
+function ReferEarn() {
+  const router = useRouter();
+  const [grown, setGrown] = useState(false);
+
+  // Grows as the visitor scrolls past the hero.
+  useEffect(() => {
+    const onScroll = () => setGrown(window.scrollY > 60);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <div className="flex justify-center max-w-full px-1">
+      <button
+        onClick={() => router.push('/#referral-section')}
+        className={`refer-earn font-bold uppercase tracking-[0.15em] whitespace-nowrap underline decoration-2 underline-offset-[6px] sm:underline-offset-8 hover:underline-offset-[10px] transition-all duration-500 ease-out ${
+          grown ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg'
+        }`}
+      >
+        Refer &amp; Earn
       </button>
     </div>
   );

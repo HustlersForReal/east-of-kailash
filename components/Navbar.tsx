@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info, Camera } from 'lucide-react';
+import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info, Camera, BookOpen, Handshake, Users } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
 import { site } from '@/lib/site';
 import { WhatsAppLink } from './WhatsAppLink';
@@ -50,9 +50,10 @@ export function Navbar() {
                   </div>
                 )}
               </div>
+              <Link href="/origin-and-story" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Our Story</Link>
               <Link href="/gallery" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Gallery</Link>
-              <Link href="/list-your-property" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">List Your Property</Link>
               <Link href="/circle-rates" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Circle Rates</Link>
+              <Link href="/list-your-property" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">List Your Property</Link>
               <Link href="/exclusive-deals" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Exclusive Deals</Link>
               <Link href="/about" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">About Us</Link>
             </nav>
@@ -83,10 +84,13 @@ export function Navbar() {
                 ))}
               </div>
             )}
+            <Link href="/origin-and-story" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><BookOpen className="w-4 h-4 text-gold-accent" /> Our Story</Link>
             <Link href="/gallery" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Camera className="w-4 h-4 text-gold-accent" /> Gallery</Link>
             <Link href="/list-your-property" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-gold-accent bg-gold-accent/10 hover:bg-gold-accent/20 rounded-xl transition-colors"><Plus className="w-4 h-4" /> List Your Property</Link>
             <Link href="/circle-rates" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><BarChart3 className="w-4 h-4 text-gold-accent" /> Circle Rates</Link>
             <Link href="/exclusive-deals" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Star className="w-4 h-4 text-gold-accent" /> Exclusive Deals</Link>
+            <a href="#partner-section" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Handshake className="w-4 h-4 text-gold-accent" /> Property Baap Professional Partner</a>
+            <a href="#referral-section" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Users className="w-4 h-4 text-gold-accent" /> Property Baap Referral Partner (#HarGharDealer)</a>
             <Link href="/about" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Info className="w-4 h-4 text-gold-accent" /> About Us</Link>
             <div className="pt-4 mt-2 border-t border-border-color">
               <WhatsAppLink message={`Hello ${site.name}, I want to get in touch.`} onClick={() => setMobileOpen(false)} className="flex items-center justify-center gap-2 bg-primary-navy text-white px-4 py-3 text-sm font-semibold uppercase tracking-wider rounded-xl hover:bg-gold-accent hover:text-primary-navy transition-colors w-full">Contact / WhatsApp</WhatsAppLink>

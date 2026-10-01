@@ -2,7 +2,8 @@ export type BlogBlock =
   | { type: 'p'; text: string }
   | { type: 'h2'; text: string }
   | { type: 'list'; items: string[] }
-  | { type: 'quote'; text: string };
+  | { type: 'quote'; text: string }
+  | { type: 'image'; src: string; alt: string; caption?: string };
 
 export interface Blog {
   id: string;
@@ -39,8 +40,22 @@ export const blogs: Blog[] = [
       },
       { type: 'h2', text: 'Blocks A–C: the established core' },
       {
+        type: 'image',
+        src: '/east-of-kailash-images/block-a/02.jpeg',
+        alt: 'A residential street in Block A, part of the established core of East of Kailash',
+        caption:
+          'Block A and its neighbours B and C make up the oldest part of the colony, laid out by the DDA in the 1970s.',
+      },
+      {
         type: 'p',
         text: 'Block A is the colony\u2019s gateway on the Outer Ring Road side — widest lanes, quickest exits toward Nehru Place, Kailash Colony and Lajpat Nagar, and a settled mix of original allottees and upgraded builder floors. Block B sits at the quiet centre with maintained parks and a strong community feel, the classic family-buy block. Block C is the colony\u2019s most sought-after address: premium residential stock, generous plots and the shortest walk to the Community Centre belt, which is why luxury builder floors and independent houses here command the top rents and the fastest resales in 110065.',
+      },
+      {
+        type: 'image',
+        src: '/east-of-kailash-images/block-d/02.jpeg',
+        alt: 'Housing in Block D, the middle band of the colony with the most open space',
+        caption:
+          'Blocks D and E came later and carry noticeably more open space than the A to C core, which is where the redevelopment chatter tends to start.',
       },
       { type: 'h2', text: 'Blocks D–E: parks, space and redevelopment' },
       {
@@ -51,6 +66,13 @@ export const blogs: Blog[] = [
       {
         type: 'p',
         text: 'Block F is the colony\u2019s practical middle — orderly streets, equidistant from the amenity belt (schools, hospitals, nursing homes) and the shopping areas, with dependable tenant demand from professionals working in Nehru Place and Okhla. Block G forms the peaceful edge: calm streets, settled character and comparatively accessible entry prices, often the smartest first step into this micro-market for first-time buyers and yield-focused investors.',
+      },
+      {
+        type: 'image',
+        src: '/east-of-kailash-images/community-centre-1/02.jpeg',
+        alt: 'One of the Community Centre markets that serves daily needs in East of Kailash',
+        caption:
+          'The two Community Centre markets are the closest thing the colony has to a high street, and both sit inside the neighbourhood.',
       },
       { type: 'h2', text: 'The two other micro-markets' },
       {
@@ -87,6 +109,13 @@ export const blogs: Blog[] = [
         type: 'p',
         text: 'Most buyers budget the property price and forget the government\u2019s share until the week of registration. In Delhi that share is large, gender-linked and non-negotiable — and after registration, a second process (mutation) decides whose name the municipal records show. This guide maps the complete money trail for a South Delhi purchase: what you pay, to whom, in what order, and which papers to keep ready.',
       },
+      {
+        type: 'image',
+        src: '/east-of-kailash-images/block-c/02.jpeg',
+        alt: 'Residential property in Block C, South Delhi',
+        caption:
+          'Stamp duty is calculated on the higher of your deal price and the government circle-rate value for the property, whichever is greater.',
+      },
       { type: 'h2', text: 'Stamp duty: the gender-linked slabs' },
       {
         type: 'p',
@@ -101,10 +130,24 @@ export const blogs: Blog[] = [
           'Duty applies to the higher of deal price and circle-rate value — under-declaring the price never reduces duty',
         ],
       },
+      {
+        type: 'image',
+        src: '/east-of-kailash-images/community-centre-2/02.jpeg',
+        alt: 'Street-level activity around the second Community Centre market',
+        caption:
+          'Registration is a flat 1% in Delhi, capped at 1 lakh. It is the one component of your transaction cost that does not scale with the price.',
+      },
       { type: 'h2', text: 'Registration: what actually happens at the sub-registrar' },
       {
         type: 'p',
         text: 'The sale deed is executed and registered at the sub-registrar\u2019s office of the concerned zone, with stamp duty paid upfront (today largely through online/stock-holding channels) and both parties present with ID proof, photographs and witnesses. Keep the registered deed\u2019s number, date and sub-registrar details safe — every downstream step, from mutation to home-loan disbursement to future resale, references them. One practical tip: verify the circle-rate value of your exact property before the appointment, so there is no last-minute duty shortfall at the counter.',
+      },
+      {
+        type: 'image',
+        src: '/east-of-kailash-images/block-g/02.jpeg',
+        alt: 'Low-rise residential housing in Block G, Kailash Hills',
+        caption:
+          'Mutation is the transfer of title into your name. Skip it and you carry the risk for as long as you own the property.',
       },
       { type: 'h2', text: 'Mutation: the step buyers skip (and regret)' },
       {
@@ -154,10 +197,24 @@ export const blogs: Blog[] = [
         type: 'p',
         text: 'The colony\u2019s plan shows the DDA\u2019s 1960s instincts at their best: low-rise plotted housing at human scale, green pockets at regular intervals, schools and healthcare embedded inside the colony, and shopping quarantined into two Community Centres. That separation is the reason East of Kailash never developed the chaotic mixed-use lanes that strain other South Delhi colonies — and why, sixty years on, its residential lanes still feel residential. When the Violet Line reached Govindpuri in 2010 and the Outer Ring Road matured into a crosstown artery, the colony gained metro-grade connectivity without surrendering its layout.',
       },
+      {
+        type: 'image',
+        src: '/east-of-kailash-images/block-a/03.jpeg',
+        alt: 'Independent houses and builder floors in the older blocks of East of Kailash',
+        caption:
+          'The colony moved from DDA allotment plots to builder floors over three decades, and the paperwork trail from that shift is still being untangled today.',
+      },
       { type: 'h2', text: 'From allotments to builder floors' },
       {
         type: 'p',
         text: 'Like much of South Delhi, the colony\u2019s housing stock evolved in waves: original DDA allotments and plotted houses first, then the great builder-floor transformation from the 1980s onward, as single-family homes became stilt-plus-four buildings with separately saleable floors. Today\u2019s market is therefore layered — original houses awaiting redevelopment next to brand-new builder floors, DDA flats trading as the value entry, and commercial stock concentrated in the Community Centre belt. Each layer has different paperwork, different construction quality and different price logic, which is why \u201cEast of Kailash rates\u201d as a single number is meaningless without a block and a building type attached.',
+      },
+      {
+        type: 'image',
+        src: '/east-of-kailash-images/block-c/03.jpeg',
+        alt: 'A residential block in East of Kailash with the wider South Delhi skyline beyond',
+        caption:
+          'Proximity to Nehru Place and the ISKCON Temple is the single biggest factor in what this neighbourhood is worth today.',
       },
       { type: 'h2', text: 'The neighbourhood effect' },
       {

@@ -15,11 +15,11 @@ export function FinalCTA() {
           Looking for Property in East of Kailash?
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-light-navy/60 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
-          Whether you&apos;re buying, selling, renting or investing, discover the right property with hyperlocal expertise.
+          Whether you&apos;re buying, selling or renting, discover the right property with hyperlocal expertise.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
           <Link
-            href="/#explore"
+            href="/#live-demand"
             className="bg-gold-accent text-primary-navy hover:bg-white px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-semibold uppercase tracking-wider transition-all duration-300"
           >
             Explore Properties

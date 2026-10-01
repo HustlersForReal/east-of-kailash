@@ -8,16 +8,39 @@ export function OriginOfEOK() {
         </h2>
         <div className="space-y-5 sm:space-y-6 text-secondary-text text-sm sm:text-[15px] leading-[1.9] text-justify">
           <p>
-            East of Kailash is a product of Delhi&apos;s great planned expansion. As the capital grew southward in the decades after independence, the Delhi Development Authority carved out organised residential enclaves across South Delhi &mdash; and this colony, laid out in neat Blocks A to G just east of the historic Kailash pocket, got the name it still carries with pride.
+            East of Kailash came into being in the 1970s, when the Delhi Development Authority laid
+            out a new colony on agricultural land belonging to the old revenue village of Bahpur. It
+            was part of a much larger act of planned urban expansion. Delhi was growing outward,
+            and new residential districts were being carved across South Delhi to absorb a
+            population that the old city could no longer hold.
           </p>
           <p>
-            The plan was simple and far-sighted: wide roads, generous plot sizes, parks within walking distance of every home, and dedicated commercial centres to serve daily needs. Allottees moved into DDA flats and residential plots, and over time the colony matured into one of South Delhi&apos;s most balanced addresses &mdash; equally loved by families, professionals and investors.
+            The name is really a description of location. The colony sits directly east of Kailash
+            Colony and Greater Kailash, both of which had been established decades earlier, in
+            the 1950s, and both named after the sacred Mount Kailash. Taking its name from where
+            it stood rather than from anything aspirational, East of Kailash inherited a certain
+            quiet prestige the moment the boundaries were drawn.
           </p>
           <p>
-            As neighbouring Nehru Place grew into Asia&apos;s largest commercial hub and the Ring Road corridor came alive, East of Kailash found itself sitting at a remarkable junction &mdash; calm, green residential living on one side, and some of Delhi&apos;s biggest commercial and institutional landmarks on the other.
+            What followed was a swift transformation. What had been rural periphery quickly filled
+            with DDA housing pockets, cooperative group housing societies and independent
+            residences. The Blocks A to G that define the colony today emerged during these early
+            years, and the neighbourhood settled into the balanced, self-contained character it is
+            still known for.
           </p>
           <p>
-            Today, with its two buzzing Community Centre markets, its own cinema hall, schools, hospitals and nursing homes inside the colony, East of Kailash stands complete &mdash; a self-sufficient pincode where everything you need lives within a few minutes of your doorstep.
+            The pace picked up sharply once the adjacent Nehru Place commercial district began to
+            develop, and again with the arrival of the iconic ISKCON Temple, which became a
+            landmark not just for this colony but for all of South Delhi. Proximity to the
+            commercial and institutional activity around it is a large part of why the area became
+            so sought after so quickly.
+          </p>
+          <p>
+            Today East of Kailash is a fully residential neighbourhood with its own Community
+            Centre markets, a cinema hall, schools, hospitals and a nursing home, all within the
+            colony. It sits in a rare position, close enough to Delhi&apos;s best commercial
+            districts to be convenient, and self-contained enough that daily life barely needs to
+            leave the neighbourhood.
           </p>
         </div>
       </div>

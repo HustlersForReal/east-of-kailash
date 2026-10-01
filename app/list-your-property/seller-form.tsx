@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo, useEffect, FormEvent } from 'react';
-import { ArrowRight, ArrowLeft, Send, CheckCircle2, ChevronDown } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { ArrowRight, ArrowLeft, Send, CheckCircle2, ChevronDown, MapPin } from 'lucide-react';
 import { getReferredBy } from '@/lib/referral-storage';
 import { getDb } from '@/lib/firebase';
 import { addDoc, collection } from 'firebase/firestore';
@@ -16,6 +17,14 @@ import {
 } from '@/lib/sell-config';
 import { areaProfiles } from '@/lib/data';
 import { site } from '@/lib/site';
+import { useAreaPrefill } from '@/lib/use-area-prefill';
+import { PINCODE_110065_RING, PINCODE_110065_CENTER } from '@/lib/geo';
+
+// Leaflet touches window at import time, so the map must never render on the
+// server. See map-docs.md 3.2.
+const LocationMap = dynamic(() => import('@/components/LocationMap'), {
+  ssr: false,
+});
 import {
   sanitizeSellField, validateName, validatePhone,
   isPriceValid,
@@ -48,6 +57,7 @@ const STEP_FIELDS: Record<string, string[]> = {
 export function SellerForm() {
   const [values, setValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [mapBlocked, setMapBlocked] = useState(false);
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -59,6 +69,13 @@ export function SellerForm() {
       setValues(prev => (prev.referralCode ? prev : { ...prev, referralCode: short }));
     }
   }, []);
+
+  // Arriving from /area/<slug>?area=<slug> pre-selects that locality.
+  const prefillArea = useAreaPrefill();
+  useEffect(() => {
+    if (!prefillArea) return;
+    setValues(prev => (prev.locality ? prev : { ...prev, locality: prefillArea }));
+  }, [prefillArea]);
 
   const propType = values.assetType || '';
   const typeConfig = useMemo(() => SELL_CONFIG[propType] || [], [propType]);
@@ -425,6 +442,26 @@ export function SellerForm() {
                 placeholder="House / Block No., Street"
               />
               <p className="text-light-navy/40 text-xs">City: Delhi • Pincode: 110065 (auto-filled)</p>
+
+              <div className="pt-1">
+                <LocationMap
+                  onLocationSelect={(addr) => { set('address', addr); setMapBlocked(false); }}
+                  onBlockedClick={() => setMapBlocked(true)}
+                  restrictTo={PINCODE_110065_RING}
+                  center={PINCODE_110065_CENTER}
+                  zoom={13}
+                  initialLocation={values.address || values.locality || ''}
+                />
+                <p className="text-[10px] text-light-navy/40 mt-1.5">
+                  Tap the map to fill the address, or type an address to move the pin.
+                </p>
+                {mapBlocked && (
+                  <p className="flex items-start gap-1.5 text-[10px] text-red-400 mt-1.5">
+                    <MapPin className="w-3 h-3 shrink-0 mt-px" />
+                    This portal only covers East of Kailash, 110065. Please drop the pin inside the marked area.
+                  </p>
+                )}
+              </div>
             </div>
           )}
 

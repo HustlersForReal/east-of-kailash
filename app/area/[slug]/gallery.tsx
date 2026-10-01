@@ -10,7 +10,8 @@ export function AreaGallery({ slug, name }: { slug: string; name: string }) {
   const [page, setPage] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  const perPage = 3;
+  // One photo per slide, shown full width.
+  const perPage = 1;
   const totalPages = Math.ceil(images.length / perPage);
   const getSrc = (filename: string) => `/east-of-kailash-images/${slug}/${filename}`;
 
@@ -69,7 +70,7 @@ export function AreaGallery({ slug, name }: { slug: string; name: string }) {
           </div>
           <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-secondary-text bg-white border border-border-color rounded-full px-3 py-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            {String(page * perPage + 1).padStart(2, '0')}–{String(Math.min((page + 1) * perPage, images.length)).padStart(2, '0')} / {images.length}
+            {String(page + 1).padStart(2, '0')} / {images.length}
           </span>
         </div>
 
@@ -77,31 +78,25 @@ export function AreaGallery({ slug, name }: { slug: string; name: string }) {
         <div className="relative bg-light-navy/20">
           <div className="overflow-hidden">
             <div className="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ transform: `translateX(-${page * 100}%)` }}>
-              {Array.from({ length: totalPages }).map((_, p) => (
-                <div key={p} className="w-full shrink-0 flex gap-2.5 sm:gap-3.5 p-2.5 sm:p-3.5">
-                  {images.slice(p * perPage, p * perPage + perPage).map((filename, idx) => {
-                    const globalIdx = p * perPage + idx;
-                    return (
-                      <button key={filename} onClick={() => setActive(globalIdx)} className="group relative flex-1 h-[220px] sm:h-[300px] md:h-[340px] lg:h-[380px] overflow-hidden rounded-xl bg-white border border-border-color shadow-sm hover:shadow-md transition-all duration-300">
-                        <img src={getSrc(filename)} alt={`${name} ${globalIdx + 1}`} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span className="absolute bottom-2.5 left-2.5 bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                          {String(globalIdx + 1).padStart(2, '0')}
+              {Array.from({ length: totalPages }).map((_, p) => {
+                const filename = images[p * perPage];
+                return (
+                  <div key={filename} className="w-full shrink-0 p-2.5 sm:p-3.5">
+                    <button onClick={() => setActive(p * perPage)} className="group relative block w-full h-[260px] xs:h-[300px] sm:h-[400px] md:h-[480px] lg:h-[560px] overflow-hidden rounded-xl bg-white border border-border-color shadow-sm hover:shadow-md transition-all duration-300">
+                      <img src={getSrc(filename)} alt={`${name} ${p + 1}`} loading="lazy" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <span className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        {String(p + 1).padStart(2, '0')} / {images.length}
+                      </span>
+                      <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="w-11 h-11 rounded-full bg-white/95 flex items-center justify-center shadow-lg">
+                          <Eye className="w-4 h-4 text-primary-navy" />
                         </span>
-                        <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="w-10 h-10 rounded-full bg-white/95 flex items-center justify-center shadow-lg">
-                            <Eye className="w-4 h-4 text-primary-navy" />
-                          </span>
-                        </span>
-                      </button>
-                    );
-                  })}
-                  {images.slice(p * perPage, p * perPage + perPage).length < perPage &&
-                    Array.from({ length: perPage - images.slice(p * perPage, p * perPage + perPage).length }).map((_, i) => (
-                      <div key={`empty-${i}`} className="flex-1 h-[220px] sm:h-[300px] md:h-[340px] lg:h-[380px] rounded-xl bg-transparent" />
-                    ))}
-                </div>
-              ))}
+                      </span>
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -119,15 +114,14 @@ export function AreaGallery({ slug, name }: { slug: string; name: string }) {
 
         {/* Progress */}
         {totalPages > 1 && (
-          <div className="flex items-center gap-3 px-4 sm:px-5 py-3 bg-white border-t border-border-color">
-            <div className="flex items-center gap-1.5 flex-1">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button key={i} onClick={() => setPage(i)} className="flex-1 h-1.5 rounded-full overflow-hidden bg-light-navy">
-                  <span className={`block h-full rounded-full transition-all duration-500 ${page === i ? 'w-full bg-gold-accent' : 'w-0 bg-transparent'}`} />
-                </button>
-              ))}
+          <div className="flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-3 bg-white border-t border-border-color">
+            <div className="flex-1 h-1.5 rounded-full overflow-hidden bg-light-navy">
+              <span
+                className="block h-full rounded-full bg-gold-accent transition-[width] duration-500"
+                style={{ width: `${((page + 1) / totalPages) * 100}%` }}
+              />
             </div>
-            <span className="text-[11px] font-bold tracking-widest text-secondary-text shrink-0">
+            <span className="text-[11px] font-bold tracking-widest text-secondary-text shrink-0 tabular-nums">
               {String(page + 1).padStart(2, '0')} / {String(totalPages).padStart(2, '0')}
             </span>
           </div>

@@ -68,28 +68,13 @@ export function OurServices() {
           </p>
         </div>
 
-        <p className="text-primary-navy font-bold text-sm sm:text-base mb-5 sm:mb-6">
-          Tell Us Who You Are.
-        </p>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {roles.map((service) => (
             <ServiceCard key={service.slug} service={service} />
           ))}
-        </div>
-
-        <div className="mt-12 sm:mt-16">
-          <h3 className="text-2xl sm:text-3xl font-bold text-primary-navy mb-2 sm:mb-3 tracking-tight">
-            Explore Our Services
-          </h3>
-          <p className="text-secondary-text text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-3xl">
-            Professional services for every step of your property journey — documentation, liaisoning and beyond.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {services.map((service) => (
-              <ServiceCard key={service.slug} service={service} />
-            ))}
-          </div>
+          {services.map((service) => (
+            <ServiceCard key={service.slug} service={service} />
+          ))}
         </div>
       </div>
     </section>
