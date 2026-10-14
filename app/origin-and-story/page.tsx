@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import { OriginOfEOK } from '@/components/OriginOfEastOfKailash';
 import { StoryOfEOK } from '@/components/StoryOfEOK';
 
-export const metadata: Metadata = {
-  title: 'Origin & Story - EastOfKailash.com',
+export const metadata: Metadata = pageMetadata({
+  title: 'Origin & Story',
   description:
-    'Where East of Kailash came from, and the story behind EastOfKailash.com. Blocks A to G, from a DDA planned colony to one of South Delhi\'s most balanced addresses.',
-};
+    'Where East of Kailash came from, and the story behind EastOfKailash.com. Blocks A to G, from a DDA planned colony to a balanced South Delhi address.',
+  path: '/origin-and-story',
+});
 
 export default function OriginAndStoryPage() {
   return (

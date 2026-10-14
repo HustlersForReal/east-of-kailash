@@ -6,11 +6,23 @@ import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info, Camera
 import { areaProfiles } from '@/lib/data';
 import { site } from '@/lib/site';
 import { WhatsAppLink } from './WhatsAppLink';
+import { TopBenefitsMarquee } from './TopBenefitsMarquee';
 
 export function Navbar() {
   const [exploreOpen, setExploreOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExplore, setMobileExplore] = useState(false);
+  // Collapses the benefits strip once scrolled, so the sticky header compacts.
+  // The drawer offset reads this too, otherwise it would leave a gap where the
+  // strip used to be.
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -66,11 +78,13 @@ export function Navbar() {
             </button>
           </div>
         </div>
+
+        <TopBenefitsMarquee collapsed={scrolled} />
       </header>
 
       <div className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-        <div className={`absolute top-16 sm:top-20 left-0 right-0 bottom-0 bg-white shadow-2xl overflow-y-auto transition-transform duration-300 ease-out ${mobileOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+        <div className={`absolute ${scrolled ? 'top-16 sm:top-20' : 'top-[7rem] sm:top-[7.5rem]'} left-0 right-0 bottom-0 bg-white shadow-2xl overflow-y-auto transition-transform duration-300 ease-out ${mobileOpen ? 'translate-y-0' : '-translate-y-full'}`}>
           <nav className="px-3 py-4 space-y-1">
             <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-primary-navy hover:bg-light-navy rounded-xl transition-colors"><Home className="w-4 h-4 text-gold-accent" /> Home</Link>
             <button onClick={() => setMobileExplore(!mobileExplore)} className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors">

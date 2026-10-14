@@ -1,4 +1,13 @@
-import { BadgeIndianRupee, UserCheck, Sparkles, Lock, Eye, Search, Shield, CreditCard, Heart, FileSignature, ArrowLeftRight, TrendingUp, Zap } from 'lucide-react';
+import { BadgeIndianRupee, UserCheck, Sparkles, Lock, Eye, Search, Shield, CreditCard, Heart, FileSignature, ArrowLeftRight, TrendingUp, Zap, Check, Percent } from 'lucide-react';
+
+/* Discounted-offer categories shown under the "Why Choose Us" intro. */
+const offerCategories = [
+  'Senior Citizen',
+  'Army Personnel',
+  'Ex-Government Officers',
+  'Doctors',
+  'Widows & Differently Abled',
+];
 
 const features = [
   {
@@ -80,6 +89,30 @@ export function SaveMyMoney() {
           <p className="text-secondary-text text-base sm:text-lg leading-relaxed mb-4">
             From the founders of propertybaap.com, EastOfKailash.com is an entity which has been trusted and appreciated by thousands of property owners. An Actual One Stop Shop that provides comprehensive services covering your entire real estate journey at a single platform.
           </p>
+
+          {/* Special offers panel. Matches the card style below it: white,
+              3px navy border, navy icon square. */}
+          <div className="bg-white border-[3px] border-primary-navy px-5 sm:px-6 py-5 sm:py-6 mb-6">
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+              <div className="w-11 h-11 rounded-lg bg-primary-navy flex items-center justify-center shrink-0">
+                <Percent className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-primary-navy leading-snug">
+                Special Discounted Offers For:
+              </h3>
+            </div>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+              {offerCategories.map((category) => (
+                <li
+                  key={category}
+                  className="flex items-center gap-2.5 text-sm sm:text-base font-semibold text-primary-navy"
+                >
+                  <Check className="w-4 h-4 text-gold-accent shrink-0" />
+                  {category}
+                </li>
+              ))}
+            </ul>
+          </div>
           <p className="text-secondary-text text-sm sm:text-base leading-relaxed">
             There is no one who can serve you the way we do. We not only save your time but also give you combination of packages that saves your overall cost for your specific property need. And on many of our deals we add a one of its kind complementary service, on us.
           </p>

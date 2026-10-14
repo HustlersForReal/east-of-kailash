@@ -1,4 +1,6 @@
-import { ChevronDown } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { WhatsAppLink } from './WhatsAppLink';
+import { site } from '@/lib/site';
 
 export function WhatIsEOK() {
   return (
@@ -38,13 +40,14 @@ export function WhatIsEOK() {
       </section>
 
       <div className="flex justify-center px-4 sm:px-6 py-8 sm:py-10 bg-white">
-        <a
-          href="#one-call-challenge"
-          className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-8 py-3.5 sm:py-4 bg-gold-accent text-primary-navy border-2 border-gold-accent hover:bg-primary-navy hover:text-white hover:border-primary-navy text-[11px] sm:text-sm font-bold uppercase tracking-[0.08em] sm:tracking-[0.15em] leading-snug sm:leading-normal transition-all duration-300 text-center text-balance"
+        <WhatsAppLink
+          message={`Hello, ${site.name}! I Want To Know How You Are Better Than The Other Platforms.`}
+          phone={site.phone}
+          className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 sm:gap-2.5 px-5 sm:px-8 py-4 bg-gold-accent text-primary-navy border-2 border-gold-accent hover:bg-primary-navy hover:text-white hover:border-primary-navy text-[13px] sm:text-sm font-bold uppercase tracking-[0.08em] sm:tracking-[0.15em] leading-snug sm:leading-normal transition-all duration-300 text-center text-balance"
         >
           <span>60 Seconds To Prove EastOfKailash.com Is Better!</span>
-          <ChevronDown className="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-y-0.5" />
-        </a>
+          <ArrowUpRight className="w-[18px] h-[18px] sm:w-4 sm:h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </WhatsAppLink>
       </div>
     </>
   );

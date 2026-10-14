@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
+
+// Required for output: 'export'. Without it Next cannot know the full route set
+// up front and will try to render unknown slugs on demand.
+export const dynamicParams = false;
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, ArrowLeft, CalendarDays, Clock } from 'lucide-react';
 import { blogs, type BlogBlock } from '@/lib/blogs';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata, absoluteUrl } from '@/lib/seo';
 
 export function generateStaticParams() {
   return blogs.map((blog) => ({ slug: blog.slug }));
@@ -17,10 +23,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const blog = blogs.find((b) => b.slug === slug);
   if (!blog) return { title: 'Blog Not Found' };
-  return {
-    title: `${blog.title} - EastOfKailash.com`,
+  return pageMetadata({
+    title: blog.title,
     description: blog.excerpt,
-  };
+    path: `/blogs/${blog.slug}`,
+    image: blog.image,
+    type: 'article',
+    publishedTime: new Date(blog.date).toISOString(),
+  });
 }
 
 function Block({ block }: { block: BlogBlock }) {
@@ -94,6 +104,36 @@ export default async function BlogPage({
 
   return (
     <>
+      {/* Every field below mirrors content that is rendered on this page. */}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          '@id': absoluteUrl(`/blogs/${blog.slug}`),
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': absoluteUrl(`/blogs/${blog.slug}`),
+          },
+          headline: blog.title,
+          description: blog.excerpt,
+          image: [absoluteUrl(blog.image)],
+          datePublished: new Date(blog.date).toISOString(),
+          dateModified: new Date(blog.date).toISOString(),
+          articleSection: blog.category,
+          inLanguage: 'en-IN',
+          author: {
+            '@type': 'Organization',
+            name: 'EastOfKailash.com',
+            url: 'https://eastofkailash.com/',
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'EastOfKailash.com',
+            url: 'https://eastofkailash.com/',
+          },
+        }}
+      />
+
       {/* Hero */}
       <section className="bg-primary-navy text-white pt-10 sm:pt-14 pb-10 sm:pb-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import { Shield, TrendingUp, Users, Eye, Handshake, CheckCircle2 } from 'lucide-react';
 import { SellerForm } from './seller-form';
 
-export const metadata: Metadata = {
-  title: 'List Your Property - EastOfKailash.com',
-  description: 'List your property for sale in East of Kailash with EastOfKailash.com. Reach genuine buyers across Blocks A-G, DDA Flats and Community Centre.',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'List Your Property',
+  description:
+    'List your property for sale in East of Kailash with EastOfKailash.com. Reach genuine buyers across Blocks A to G, DDA flats and Community Centre.',
+  path: '/list-your-property',
+});
 
 const whyList = [
   {

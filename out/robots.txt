@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://eastofkailash.com
+Sitemap: https://eastofkailash.com/sitemap.xml

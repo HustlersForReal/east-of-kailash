@@ -71,8 +71,18 @@ html {
   animation: marquee 110s linear infinite;
 }
 
+/* Top benefits strip in the navbar. Same keyframes (the set is repeated an even
+   number of times, so -50% lands exactly on a copy boundary) but far fewer
+   items than the services marquee, which would crawl at 110s. 56s rather than
+   28s because 4 copies travel twice as far as 2, and this keeps the same
+   on-screen speed. */
+.animate-marquee-fast {
+  animation: marquee 56s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
+  .animate-marquee-fast,
   .refer-earn {
     animation: none;
   }

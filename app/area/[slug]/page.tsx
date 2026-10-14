@@ -5,7 +5,13 @@ import { areaProfiles } from '@/lib/data';
 import { site } from '@/lib/site';
 import { WhatsAppLink } from '@/components/WhatsAppLink';
 import { AreaGallery } from './gallery';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata, truncateMeta } from '@/lib/seo';
 import type { Metadata } from 'next';
+
+// Required for output: 'export'. Without it Next cannot know the full route set
+// up front and will try to render unknown slugs on demand.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return areaProfiles.map((area) => ({
@@ -22,10 +28,13 @@ export async function generateMetadata({
   const area = areaProfiles.find((a) => a.slug === slug);
   if (!area) return { title: 'Area Not Found' };
 
-  return {
-    title: `${area.name}, East of Kailash - EastOfKailash.com`,
-    description: area.description.slice(0, 160),
-  };
+  return pageMetadata({
+    // Layout template already appends " | EastOfKailash.com", so the locality is
+// not repeated in the title. Keeps "Community Centre 1" inside the 60-char budget.
+title: `${area.name} Property`,
+    description: truncateMeta(`${area.tagline}. ${area.description}`),
+    path: `/area/${area.slug}`,
+  });
 }
 
 export default async function AreaPage({
@@ -59,6 +68,28 @@ export default async function AreaPage({
 
   return (
     <>
+      {/* Breadcrumb trail mirrors the visible back-link and area heading above. */}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://eastofkailash.com/' },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Explore East of Kailash',
+              item: 'https://eastofkailash.com/#explore',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: area.name,
+              item: `https://eastofkailash.com/area/${area.slug}`,
+            },
+          ],
+        }}
+      />
       {/* Hero Header */}
       <section className="relative bg-primary-navy text-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05]">

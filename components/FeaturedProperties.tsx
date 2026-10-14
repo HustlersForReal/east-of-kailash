@@ -37,6 +37,7 @@ function DemandCard({ demand, index }: { demand: LiveDemand; index: number }) {
   const messageLines = [
     `Hello ${site.name}, I am interested in this property.`,
     '',
+    `Ref: ${demand.ref}`,
     `Size: ${demand.size || '—'}`,
     `Config: ${config || '—'}`,
     `Type: ${demand.kind}${demand.outright ? ' (Outright)' : ''}`,
@@ -49,7 +50,7 @@ function DemandCard({ demand, index }: { demand: LiveDemand; index: number }) {
     <div className="group bg-white border border-border-color p-5 sm:p-6 flex flex-col h-full hover:border-gold-accent/40 hover:shadow-md transition-all duration-200">
       <div className="flex items-center justify-between mb-4">
         <span className="text-[11px] font-bold text-secondary-text/60 tabular-nums">
-          #{String(index + 1).padStart(2, '0')}
+          {demand.ref}
         </span>
         <span
           className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 ${

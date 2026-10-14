@@ -15,7 +15,10 @@ const quickFilters: never[] = [];
 
 export function Hero() {
   return (
-    <section className="relative w-full overflow-hidden min-h-[calc(100svh-4rem)] sm:min-h-[calc(100svh-5rem)] flex flex-col justify-between items-center pt-4 sm:pt-6 lg:pt-8 pb-0">
+    /* Header now carries TopBenefitsMarquee, so it is 7rem tall below sm and
+       7.5rem from sm up. min-h matches so header + hero still fill exactly one
+       screen instead of overflowing it by the marquee's height. */
+    <section className="relative w-full overflow-hidden min-h-[calc(100svh-7rem)] sm:min-h-[calc(100svh-7.5rem)] flex flex-col justify-between items-center pt-4 sm:pt-6 lg:pt-8 pb-0">
       <video autoPlay loop muted playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover object-center">
         <source src="https://res.cloudinary.com/s8hu1xkw/video/upload/v1789155623/EOK-FInal-compressed_yz0ahn.mp4" type="video/mp4" />
       </video>
@@ -106,7 +109,7 @@ function NameBlocks() {
 
   return (
     <div className="flex flex-col items-center gap-1 sm:gap-1.5 mb-2 sm:mb-3">
-      {/* Mobile: 2 lines — EAST OF (bada) / KAILASH */}
+      {/* Mobile: 2 lines, EAST OF (bada) / KAILASH */}
       <div className="flex flex-col items-center gap-1 sm:hidden">
         <div className="flex items-center justify-center gap-1">
           {renderWord([0, 1, 2, 3], true)}
@@ -155,7 +158,7 @@ function Headline() {
 function Subtitle() {
   return (
     <p className="text-[14px] sm:text-base md:text-lg lg:text-xl text-white/70 max-w-[90%] sm:max-w-2xl mx-auto mb-3.5 sm:mb-5 leading-relaxed px-2 sm:px-0">
-      Your Trusted South Delhi Real Estate Partner. Buy, sell, rent or invest across Blocks A&ndash;G, DDA Flats and the Community Centre belt of East of Kailash.
+      Your Trusted Real Estate Platform For Property Deals &amp; End-To-End Property Services in East of Kailash.
     </p>
   );
 }

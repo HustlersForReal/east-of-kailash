@@ -1,19 +1,47 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { blogs } from '@/lib/blogs';
 
-export const metadata: Metadata = {
-  title: 'Blogs & Insights - EastOfKailash.com',
-  description: 'Market trends, locality guides and buying advice for East of Kailash, South Delhi (110065).',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Blogs & Insights',
+  description:
+    'Market trends, locality guides and buying advice for East of Kailash, Blocks A to G, DDA flats and South Delhi 110065.',
+  path: '/blogs',
+});
 
 export default function BlogsPage() {
   const [featured, ...rest] = blogs;
 
   return (
     <>
+      {/* CollectionPage describing the posts that are actually listed below. */}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          '@id': 'https://eastofkailash.com/blogs',
+          name: 'Blogs & Insights',
+          description:
+            'Market trends, locality guides and buying advice for East of Kailash, Blocks A to G, DDA flats and South Delhi 110065.',
+          url: 'https://eastofkailash.com/blogs',
+          isPartOf: { '@id': 'https://eastofkailash.com/#website' },
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: blogs.length,
+            itemListElement: blogs.map((blog, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              name: blog.title,
+              url: `https://eastofkailash.com/blogs/${blog.slug}`,
+            })),
+          },
+        }}
+      />
+
       {/* Hero */}
       <section className="bg-primary-navy text-white py-14 sm:py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

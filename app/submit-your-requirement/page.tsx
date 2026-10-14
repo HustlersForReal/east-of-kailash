@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import { ArrowRight, Shield, TrendingUp, Users, MapPin, Handshake, CheckCircle2, BarChart3 } from 'lucide-react';
 import { BuyerForm } from './buyer-form';
 
-export const metadata: Metadata = {
-  title: 'Submit Your Requirement - EastOfKailash.com',
-  description: 'Looking to buy or rent in East of Kailash? Tell us your budget, block and configuration. We shortlist verified homes across Blocks A-G, DDA flats and South Delhi.',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Submit Your Requirement',
+  description:
+    'Looking to buy or rent in East of Kailash? Tell us your budget, block and configuration. We shortlist verified homes across Blocks A to G and DDA flats.',
+  path: '/submit-your-requirement',
+});
 
 const whyBuy = [
   {
