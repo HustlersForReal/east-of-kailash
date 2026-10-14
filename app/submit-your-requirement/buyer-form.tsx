@@ -6,7 +6,7 @@ import { Send, X, Plus, CheckCircle2, Loader2, MapPin } from 'lucide-react';
 import { addDoc, collection } from 'firebase/firestore';
 import { Dropdown, type DropdownGroup, type DropdownOption } from '@/components/ui/Dropdown';
 import { getDb } from '@/lib/firebase';
-import { getReferredBy } from '@/lib/referral-storage';
+import { useReferredByCode } from '@/lib/referral-storage';
 import { sanitizeName, sanitizePhone } from '@/lib/validation';
 import { areaProfiles } from '@/lib/data';
 import { useAreaPrefill } from '@/lib/use-area-prefill';
@@ -30,6 +30,7 @@ const LocationMap = dynamic(() => import('@/components/LocationMap'), {
 });
 
 export function BuyerForm() {
+  const referredByCode = useReferredByCode();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [localities, setLocalities] = useState<string[]>([]);
@@ -58,16 +59,23 @@ export function BuyerForm() {
   const showPlotArea = isLandType;
 
   useEffect(() => {
-    const code = getReferredBy();
-    if (code) setReferralCode(code.replace(/^#/, ''));
-  }, []);
+    if (!referredByCode) return;
+    const short = referredByCode.replace(/^#/, '');
+    const timer = window.setTimeout(() => {
+      setReferralCode(prev => (prev ? prev : short));
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [referredByCode]);
 
   // Arriving from /area/<slug>?area=<slug> pre-ticks that locality, which
   // also moves the map via mapQuery below.
   const prefillArea = useAreaPrefill();
   useEffect(() => {
     if (!prefillArea) return;
-    setLocalities(prev => (prev.includes(prefillArea) ? prev : [prefillArea]));
+    const timer = window.setTimeout(() => {
+      setLocalities(prev => (prev.includes(prefillArea) ? prev : [prefillArea]));
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [prefillArea]);
 
   const setErr = (key: string, msg: string | null) => {
@@ -548,6 +556,7 @@ export function BuyerForm() {
         {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
         {submitting ? 'Submitting...' : 'Submit Requirement'}
       </button>
+      <p className="mt-4 text-center text-xs text-white/50 leading-relaxed">By filling this form, you agree to receive notifications through WhatsApp, call, SMS or email. You can opt out anytime by messaging us.</p>
     </form>
   );
 }

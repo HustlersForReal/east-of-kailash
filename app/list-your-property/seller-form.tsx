@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, FormEvent } from 'react';
 import dynamic from 'next/dynamic';
 import { ArrowRight, ArrowLeft, Send, CheckCircle2, ChevronDown, MapPin } from 'lucide-react';
-import { getReferredBy } from '@/lib/referral-storage';
+import { useReferredByCode } from '@/lib/referral-storage';
 import { getDb } from '@/lib/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import {
@@ -55,6 +55,7 @@ const STEP_FIELDS: Record<string, string[]> = {
 };
 
 export function SellerForm() {
+  const referredByCode = useReferredByCode();
   const [values, setValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [mapBlocked, setMapBlocked] = useState(false);
@@ -63,18 +64,22 @@ export function SellerForm() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    const code = getReferredBy();
-    if (code) {
-      const short = code.replace(/^#/, '');
+    if (!referredByCode) return;
+    const short = referredByCode.replace(/^#/, '');
+    const timer = window.setTimeout(() => {
       setValues(prev => (prev.referralCode ? prev : { ...prev, referralCode: short }));
-    }
-  }, []);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [referredByCode]);
 
   // Arriving from /area/<slug>?area=<slug> pre-selects that locality.
   const prefillArea = useAreaPrefill();
   useEffect(() => {
     if (!prefillArea) return;
-    setValues(prev => (prev.locality ? prev : { ...prev, locality: prefillArea }));
+    const timer = window.setTimeout(() => {
+      setValues(prev => (prev.locality ? prev : { ...prev, locality: prefillArea }));
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [prefillArea]);
 
   const propType = values.assetType || '';
@@ -650,6 +655,7 @@ export function SellerForm() {
             </button>
           )}
         </div>
+        <p className="mt-4 text-center text-xs text-white/50 leading-relaxed">By filling this form, you agree to receive notifications through WhatsApp, call, SMS or email. You can opt out anytime by messaging us.</p>
       </form>
     </div>
   );

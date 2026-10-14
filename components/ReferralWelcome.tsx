@@ -2,42 +2,59 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Copy, Check } from 'lucide-react';
 import { doc, getDoc } from 'firebase/firestore';
 import { getDb } from '@/lib/firebase';
-import { normalizeRefCode, setReferredBy } from '@/lib/referral-storage';
+import {
+  normalizeRefCode,
+  setReferredBy,
+  refCodeDocIdCandidates,
+} from '@/lib/referral-storage';
 
 const PERKS = [
   'Complete property ecosystem under one roof',
-  'East of Kailash Blocks A–G specialists',
+  'East of Kailash Blocks A-G specialists',
   'DDA flats, local markets & community expertise',
 ];
+
+const DISCOUNT_TEXT =
+  'Use Your Code And Get 5% Instant Discount On All EastOfKailash.com Services';
 
 export function ReferralWelcome() {
   const searchParams = useSearchParams();
   const [code, setCode] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const raw = searchParams.get('ref');
     if (!raw) return;
     const parsed = normalizeRefCode(raw);
     if (!parsed) return;
+    // Robust attribution store (365-day sliding window, 5-layer persistence).
     setReferredBy(parsed);
     let dismissed = false;
     try {
       dismissed = sessionStorage.getItem('pb_ref_welcomed') === '1';
     } catch {
-      // storage unavailable
+      // storage unavailable: show the popup
     }
     if (dismissed) return;
     let cancelled = false;
     (async () => {
       try {
         const db = getDb();
-        const snap = await getDoc(doc(db, 'referral_codes', parsed));
-        if (!cancelled && snap.exists()) {
-          const n = (snap.data() as { name?: string }).name;
-          if (n) setName(n);
+        // Docs may exist under either the hashed ('#BAAP48498A') or bare
+        // ('BAAP48498A') key - try both.
+        for (const docId of refCodeDocIdCandidates(parsed)) {
+          if (cancelled) return;
+          const snap = await getDoc(doc(db, 'referral_codes', docId));
+          if (cancelled) return;
+          if (snap.exists()) {
+            const n = (snap.data() as { name?: string }).name;
+            if (n) setName(n);
+            break;
+          }
         }
       } catch {
         // code-only fallback
@@ -60,6 +77,37 @@ export function ReferralWelcome() {
     setCode(null);
   };
 
+  const copyCode = () => {
+    if (!code) return;
+    const fallback = (text: string) => {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+    const done = () => {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    };
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(code).then(done).catch(() => {
+        if (fallback(code)) done();
+      });
+    } else {
+      if (fallback(code)) done();
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
       <div className="ref-pop-in w-full max-w-md overflow-hidden rounded-2xl border border-[#C9953C]/40 bg-[#0B0B0C] shadow-[0_0_60px_rgba(201,149,60,0.15)]">
@@ -76,10 +124,26 @@ export function ReferralWelcome() {
               {(name ?? 'P').charAt(0).toUpperCase()}
             </div>
             <div className="min-w-0 text-left">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[#E8E8E8]/60">Referred by</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[#E8E8E8]/60">You Are Referred by</p>
               <p className="truncate text-[15px] font-bold text-[#E8E8E8]">{name ?? 'An EastOfKailash.com partner'}</p>
-              <p className="mt-0.5 inline-block rounded-md bg-[#C9953C]/10 px-2 py-0.5 text-[12px] font-black tracking-[0.15em] text-[#C9953C]">{code}</p>
+              <div className="mt-0.5 flex items-center gap-1.5">
+                <p className="inline-block rounded-md bg-[#C9953C]/10 px-2 py-0.5 text-[12px] font-black tracking-[0.15em] text-[#C9953C]">{code}</p>
+                <button
+                  type="button"
+                  onClick={copyCode}
+                  title={copied ? 'Copied' : 'Copy code'}
+                  aria-label="Copy referral code"
+                  className="flex h-6 w-6 items-center justify-center rounded-md border border-[#C9953C]/30 bg-[#C9953C]/10 text-[#C9953C] hover:bg-[#C9953C] hover:text-[#0B0B0C] transition-colors"
+                >
+                  {copied ? <Check size={13} strokeWidth={2.5} /> : <Copy size={13} strokeWidth={2.5} />}
+                </button>
+                {copied && <span className="text-[11px] font-semibold text-[#C9953C]">Copied</span>}
+              </div>
             </div>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-[#C9953C]/30 bg-[#C9953C]/10 px-4 py-3 text-center">
+            <p className="text-[14px] md:text-[15px] font-bold leading-snug text-[#C9953C]">{DISCOUNT_TEXT}</p>
           </div>
 
           <ul className="mt-5 space-y-2.5">
@@ -98,7 +162,7 @@ export function ReferralWelcome() {
           >
             Explore Site
           </button>
-          <p className="mt-3 text-center text-[11px] text-[#E8E8E8]/40">Your invite is saved for 30 days.</p>
+          <p className="mt-3 text-center text-[11px] text-[#E8E8E8]/40">Your referral details are used to process your request.</p>
         </div>
       </div>
     </div>
