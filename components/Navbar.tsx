@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info, Camera, BookOpen, Handshake, Users } from 'lucide-react';
+import { ChevronDown, Menu, X, Home, MapPin, Plus, BarChart3, Star, Info, Camera, BookOpen, Handshake, Users, Search, MoreHorizontal, Building2 } from 'lucide-react';
 import { areaProfiles } from '@/lib/data';
 import { site } from '@/lib/site';
 import { WhatsAppLink } from './WhatsAppLink';
@@ -12,6 +12,8 @@ export function Navbar() {
   const [exploreOpen, setExploreOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExplore, setMobileExplore] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [mobileMore, setMobileMore] = useState(false);
   // Collapses the benefits strip once scrolled, so the sticky header compacts.
   // The drawer offset reads this too, otherwise it would leave a gap where the
   // strip used to be.
@@ -64,10 +66,31 @@ export function Navbar() {
               </div>
               <Link href="/origin-and-story" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Our Story</Link>
               <Link href="/gallery" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Gallery</Link>
-              <Link href="/circle-rates" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Circle Rates</Link>
               <Link href="/list-your-property" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">List Your Property</Link>
               <Link href="/exclusive-deals" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Exclusive Deals</Link>
               <Link href="/about" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">About Us</Link>
+              <div className="relative" onMouseEnter={() => setMoreOpen(true)} onMouseLeave={() => setMoreOpen(false)}>
+                <button className="flex items-center gap-1 text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">
+                  More
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {moreOpen && (
+                  <div className="absolute top-full right-0 pt-3 z-50">
+                    <div className="bg-white border border-border-color shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-xl p-2 w-64">
+                      <Link href="/property-search" className="flex items-center gap-2.5 text-sm font-semibold text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md px-3 py-2.5 transition-all duration-150">
+                        <Search className="w-4 h-4 text-gold-accent shrink-0" /> Property Search
+                      </Link>
+                      <Link href="/circle-rates" className="flex items-center gap-2.5 text-sm font-semibold text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md px-3 py-2.5 transition-all duration-150">
+                        <BarChart3 className="w-4 h-4 text-gold-accent shrink-0" /> Circle Rates
+                      </Link>
+                      <Link href="/mcd-booked" className="flex items-center gap-2.5 text-sm font-semibold text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md px-3 py-2.5 transition-all duration-150">
+                        <Building2 className="w-4 h-4 text-gold-accent shrink-0" /> MCD Booked
+                      </Link>
+                    </div>
+                    <div className="absolute top-0 right-10 -translate-y-1 w-3 h-3 bg-white border-l border-t border-border-color rotate-45" />
+                  </div>
+                )}
+              </div>
             </nav>
           </div>
 
@@ -101,7 +124,17 @@ export function Navbar() {
             <Link href="/origin-and-story" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><BookOpen className="w-4 h-4 text-gold-accent" /> Our Story</Link>
             <Link href="/gallery" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Camera className="w-4 h-4 text-gold-accent" /> Gallery</Link>
             <Link href="/list-your-property" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-gold-accent bg-gold-accent/10 hover:bg-gold-accent/20 rounded-xl transition-colors"><Plus className="w-4 h-4" /> List Your Property</Link>
-            <Link href="/circle-rates" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><BarChart3 className="w-4 h-4 text-gold-accent" /> Circle Rates</Link>
+            <button onClick={() => setMobileMore(!mobileMore)} className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors">
+              <span className="flex items-center gap-3"><MoreHorizontal className="w-4 h-4 text-gold-accent" /> More</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${mobileMore ? 'rotate-180' : ''}`} />
+            </button>
+            {mobileMore && (
+              <div className="ml-4 pl-3 border-l border-border-color space-y-0.5 py-1">
+                <Link href="/property-search" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 px-3 py-2 text-sm text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md transition-colors"><Search className="w-3.5 h-3.5 text-gold-accent shrink-0" />Property Search</Link>
+                <Link href="/circle-rates" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 px-3 py-2 text-sm text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md transition-colors"><BarChart3 className="w-3.5 h-3.5 text-gold-accent shrink-0" />Circle Rates</Link>
+                <Link href="/mcd-booked" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 px-3 py-2 text-sm text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md transition-colors"><Building2 className="w-3.5 h-3.5 text-gold-accent shrink-0" />MCD Booked</Link>
+              </div>
+            )}
             <Link href="/exclusive-deals" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Star className="w-4 h-4 text-gold-accent" /> Exclusive Deals</Link>
             <a href="#partner-section" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Handshake className="w-4 h-4 text-gold-accent" /> Property Baap Professional Partner</a>
             <a href="#referral-section" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Users className="w-4 h-4 text-gold-accent" /> Property Baap Referral Partner (#HarGharDealer)</a>

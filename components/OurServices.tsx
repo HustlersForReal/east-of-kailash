@@ -51,6 +51,34 @@ function ServiceCard({ service }: { service: typeof servicesData[number] }) {
 
 const roleSlugs = ['buyer', 'seller', 'landlord', 'tenant', 'nri'];
 
+const legalDocServices = [
+  'All Deeds Drafting & Registration',
+  'Property Verification',
+  'Sale Deed',
+  'Gift Deed',
+  'Relinquishment Deed',
+  'Rent Agreement',
+  'No Objection Certificate (NOC)',
+  'Valuation Report',
+  'Mutation',
+  'Real Estate Liaisoning',
+  'MCD / DDA / L&DO / NDMC',
+  'Regularisation',
+  'Property Tax Assessment',
+  'Surviving Member Certificate',
+  'Plan Sanctioning',
+  'Residential / Commercial / Industrial',
+  'Capital Gain',
+  'Structural Stability Certificate',
+  'Renovation',
+  'Relocation',
+  'Property Filming',
+  'Vaastu Consultation',
+  'NRI Property Assistance',
+  'Buy / Sell / Rent At Minimum Commission',
+  'A To Z Buying / Selling Assistance',
+];
+
 export function OurServices() {
   const roles = servicesData.filter((s) => roleSlugs.includes(s.slug));
   const services = servicesData.filter((s) => !roleSlugs.includes(s.slug));
@@ -76,6 +104,31 @@ export function OurServices() {
             <ServiceCard key={service.slug} service={service} />
           ))}
         </div>
+
+        {/* End-To-End Property & Legal Support subsection — temporarily hidden.
+        <div className="mt-14 sm:mt-16 pt-10 sm:pt-12 border-t border-border-color">
+          <h3 className="flex items-center gap-3 sm:gap-4 text-2xl sm:text-3xl font-bold text-primary-navy tracking-tight leading-[1.1] mb-8 sm:mb-10">
+            <span className="inline-block h-7 sm:h-8 w-1 sm:w-1.5 bg-gold-accent shrink-0" />
+            End-To-End Property & Legal Support
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 sm:gap-3">
+            {legalDocServices.map((item, i) => (
+              <WhatsAppLink
+                key={item}
+                message={`Hello EastOfKailash.com, I need assistance with ${item}.`}
+                className="group flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-3 sm:py-3.5 bg-primary-navy hover:bg-gold-accent transition-colors duration-200 cursor-pointer"
+              >
+                <span className="text-[10px] sm:text-[11px] font-black tracking-wider text-gold-accent/70 group-hover:text-primary-navy/60 transition-colors shrink-0">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="text-xs sm:text-[13px] font-semibold text-white group-hover:text-primary-navy transition-colors leading-snug">
+                  {item}
+                </span>
+              </WhatsAppLink>
+            ))}
+          </div>
+        </div>
+        */}
       </div>
     </section>
   );

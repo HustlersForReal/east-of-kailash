@@ -11,6 +11,7 @@ import { SaveMyMoney } from '@/components/SaveMyMoney';
 // import { StrategicPartnerships } from '@/components/StrategicPartnerships';
 import { WhyInvest } from '@/components/WhyInvest';
 import { CalculatorsSection } from '@/components/CalculatorsSection';
+import { PropertySearchSection } from '@/components/PropertySearchSection';
 import { TrustStats } from '@/components/TrustStats';
 import { Insights } from '@/components/Insights';
 import { FinalCTA } from '@/components/FinalCTA';
@@ -38,6 +39,7 @@ export default function Home() {
       {/* <StrategicPartnerships /> */}
       <WhyInvest />
       <CalculatorsSection />
+      <PropertySearchSection />
       <TrustStats />
       <Insights />
       <FinalCTA />
