@@ -321,19 +321,44 @@ export function FooterFinal({
                 ))}
               </svg>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-sm:[&>*:last-child]:col-span-2 max-sm:[&>*:last-child]:max-w-64 max-sm:[&>*:last-child]:justify-self-center">
-              {brands.map((brand) => (
-                <button
-                  key={brand.name}
-                  type="button"
-                  onClick={() => setSelectedBrand({ name: brand.name, url: brand.url })}
-                  className="group rounded-2xl bg-white border border-primary/10 p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-xl hover:shadow-primary/5"
-                >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center text-primary">{brand.icon}</div>
-                  <h4 className="font-extrabold text-lg font-bold text-primary-navy group-hover:text-primary transition tracking-[-0.02em]">{brand.name}</h4>
-                  <p className="font-sans text-sm text-secondary-text mt-2">{brand.desc}</p>
-                </button>
-              ))}
+            <div className="relative">
+              <svg
+                className="lg:hidden pointer-events-none absolute -top-8 left-0 z-0 h-[calc(100%+2rem)] w-full"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M 24 0 L 24 100"
+                  fill="none"
+                  stroke="#163825"
+                  strokeWidth="4"
+                  vectorEffect="non-scaling-stroke"
+                  strokeLinecap="butt"
+                />
+                <path
+                  d="M 76 0 L 76 100"
+                  fill="none"
+                  stroke="#163825"
+                  strokeWidth="4"
+                  vectorEffect="non-scaling-stroke"
+                  strokeLinecap="butt"
+                />
+              </svg>
+              <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-sm:[&>*:last-child]:col-span-2 max-sm:[&>*:last-child]:max-w-64 max-sm:[&>*:last-child]:justify-self-center max-sm:[&>*:last-child]:w-full">
+                {brands.map((brand) => (
+                  <button
+                    key={brand.name}
+                    type="button"
+                    onClick={() => setSelectedBrand({ name: brand.name, url: brand.url })}
+                    className="group rounded-2xl bg-white border border-primary/10 p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-xl hover:shadow-primary/5"
+                  >
+                    <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center text-primary">{brand.icon}</div>
+                    <h4 className="font-extrabold text-lg font-bold text-primary-navy group-hover:text-primary transition tracking-[-0.02em]">{brand.name}</h4>
+                    <p className="font-sans text-sm text-secondary-text mt-2">{brand.desc}</p>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
