@@ -34,7 +34,7 @@ export function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 w-full bg-white border-b border-border-color">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           <div className="flex items-center gap-4 sm:gap-8">
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <span className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-primary-navy whitespace-nowrap">
@@ -68,7 +68,6 @@ export function Navbar() {
               <Link href="/gallery" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Gallery</Link>
               <Link href="/list-your-property" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">List Your Property</Link>
               <Link href="/exclusive-deals" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">Exclusive Deals</Link>
-              <Link href="#property-baap" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">All Property Services</Link>
               <Link href="/about" className="text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">About Us</Link>
               <div className="relative" onMouseEnter={() => setMoreOpen(true)} onMouseLeave={() => setMoreOpen(false)}>
                 <button className="flex items-center gap-1 text-sm font-semibold text-secondary-text hover:text-gold-accent transition-colors">
@@ -137,7 +136,6 @@ export function Navbar() {
               </div>
             )}
             <Link href="/exclusive-deals" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Star className="w-4 h-4 text-gold-accent" /> Exclusive Deals</Link>
-            <Link href="#property-baap" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Briefcase className="w-4 h-4 text-gold-accent" /> All Property Services</Link>
             <a href="#partner-section" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Handshake className="w-4 h-4 text-gold-accent" /> Property Baap Professional Partner</a>
             <a href="#referral-section" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Users className="w-4 h-4 text-gold-accent" /> Property Baap Referral Partner (#HarGharDealer)</a>
             <Link href="/about" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-light-navy rounded-xl transition-colors"><Info className="w-4 h-4 text-gold-accent" /> About Us</Link>
