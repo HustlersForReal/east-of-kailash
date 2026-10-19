@@ -86,6 +86,9 @@ export function Navbar() {
                       <Link href="/mcd-booked" className="flex items-center gap-2.5 text-sm font-semibold text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md px-3 py-2.5 transition-all duration-150">
                         <Building2 className="w-4 h-4 text-gold-accent shrink-0" /> MCD Booked
                       </Link>
+                      <Link href="#property-baap" className="flex items-center gap-2.5 text-sm font-semibold text-secondary-text hover:text-gold-accent hover:bg-light-navy/60 rounded-md px-3 py-2.5 transition-all duration-150">
+                        <Briefcase className="w-4 h-4 text-gold-accent shrink-0" /> All Property Services
+                      </Link>
                     </div>
                     <div className="absolute top-0 right-10 -translate-y-1 w-3 h-3 bg-white border-l border-t border-border-color rotate-45" />
                   </div>
