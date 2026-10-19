@@ -9,3 +9,6 @@ public/bgvideo.mp4
 public/bgvideo.mp4
 public/east-of-kailash-images-backup/
 public/All-images-backup/
+
+# typescript build cache
+*.tsbuildinfo
